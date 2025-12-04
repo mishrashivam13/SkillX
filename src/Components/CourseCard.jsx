@@ -118,7 +118,7 @@ export default function CourseCard({
               className="text-sm sm:text-base font-semibold"
               style={{ color: theme.navy }}
             >
-              ₹{price || "24,999"}
+              ₹{price || "19,999"}
             </p>
             <p className="text-[11px] text-slate-400">Inclusive of GST</p>
           </div>

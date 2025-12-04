@@ -15,11 +15,13 @@ import AdmissionForm from "./Pages/AdmissionForm";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import UpcomingBatches from "./Components/UpcomingBatches";
+import ScrollToTop from "./Components/ScrollToTop";
 
 
 function App() {
   return (
     <Router>
+     <ScrollToTop />
       <MainLayout>
    
         <Routes>

@@ -131,11 +131,11 @@ export default function Home() {
         <section className="py-24">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-              <h2 className="text-5xl md:text-6xl font-extrabold">
+              <h3 className=" md:text-5xl font-bold">
                 <span style={{ background: `linear-gradient(90deg, ${sxOrange}, #ff9a56)`, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>
                   Most Popular Courses
                 </span>
-              </h2>
+              </h3>
               <p className="text-xl text-gray-600 mt-4">Updated every month • Built with top companies</p>
             </motion.div>
 

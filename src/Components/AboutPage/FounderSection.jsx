@@ -106,7 +106,7 @@ export default function FounderSection() {
                     Sachin Khandelwal
                   </h4>
                   <p className="text-sm md:text-base font-medium" style={{ color: sxOrange }}>
-                    Founder & CEO, KOTIBOX SkillX
+                    Founder & CEO, KOTIBOX SKILLX & <br /> KOTIBOX GLOBAL TECHNOLOGIES
                   </p>
                 </div>
 

@@ -63,9 +63,9 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900">
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900">
             Upcoming Batches
-          </h2>
+          </h3>
           <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
             Secure your seat in the next cohort. Limited seats available!
           </p>

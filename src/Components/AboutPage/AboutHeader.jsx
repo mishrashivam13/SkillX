@@ -72,13 +72,7 @@ export default function AboutHeader() {
             </Link>
           </motion.div>
 
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300"
-          >
-            Book Campus Tour
-          </motion.button>
+        
         </motion.div>
       </div>
 
