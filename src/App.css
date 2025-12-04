@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #f97316;
+}
+
+@import "tailwindcss";
+
+@theme { --color-primary: #f97316; }
+
+/* App.css */
+.field{
+  @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-orange-400 focus:outline-none;
+}
+
+/* ===========================
+   Select Scroll Styling
+   =========================== */
+
+.select-scroll {
+  background-color: #020617; /* slate-900 */
+  color: #e5e7eb;
+  max-height: 180px;         /* ✅ FIX HEIGHT */
+  overflow-y: auto;         /* ✅ ENABLE SCROLL */
+}
+
+/* option background (dropdown body) */
+.select-scroll option {
+  background-color: #020617;
+  color: #e5e7eb;
+  padding: 10px;
+}
+
+/* ===========================
+   Custom Scrollbar
+   =========================== */
+
+/* Chrome / Edge / Brave */
+.select-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.select-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.select-scroll::-webkit-scrollbar-thumb {
+  background: #f28c3a;
+  border-radius: 10px;
+}
+
+.select-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ffb07a;
+}
+
+/* Firefox */
+.select-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #f28c3a transparent;
+}
