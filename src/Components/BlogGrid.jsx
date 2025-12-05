@@ -10,17 +10,19 @@ export default function BlogGrid({ items = [] }) {
           className="group animate-fade-up"
           style={{ animationDelay: `${index * 120}ms` }}
         >
-          <Link to={`/blog/${blog.id}`} className="block h-full">
+          {/* ✅ Ye path route se match hona chahiye */}
+          <Link to={`/blogs/${blog.slug}`} className="block h-full">
             <article className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 hover:border-orange-200">
-
-              {/* Image */}
               <div className="relative overflow-hidden bg-gray-100">
                 <img
                   src={blog.image || "/fallback.jpg"}
                   alt={blog.title}
                   className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
-                  onError={(e) => e.target.src = "https://via.placeholder.com/600x400?text=No+Image"}
+                  onError={(e) => {
+                    e.target.src =
+                      "https://via.placeholder.com/600x400?text=No+Image";
+                  }}
                 />
                 <div className="absolute top-4 left-4">
                   <span className="px-4 py-1.5 text-xs font-bold bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full shadow-lg">
@@ -29,7 +31,6 @@ export default function BlogGrid({ items = [] }) {
                 </div>
               </div>
 
-              {/* Content */}
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 line-clamp-2 group-hover:text-orange-600 transition-colors">
                   {blog.title}

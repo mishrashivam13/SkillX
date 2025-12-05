@@ -59,11 +59,11 @@ export default function AdmissionModal({ isOpen, onClose }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.98 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed z-[1110] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl rounded-3xl overflow-hidden"
+            className="fixed z-[1110] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl rounded-3xl  overflow-hidden"
           >
             <div className="bg-slate-900/95 border border-white/10 rounded-3xl p-8 grid md:grid-cols-2 gap-8">
               {/* Left */}
-              <div className="text-white">
+              <div className="text-white mt-10">
                 <div className="flex items-center gap-3 mb-4">
                   <Shield className="w-6 h-6 text-orange-400" />
                   <span className="font-bold">100% Placement Guarantee</span>
@@ -71,7 +71,7 @@ export default function AdmissionModal({ isOpen, onClose }) {
 
                 <h3 className="text-4xl font-black mb-4">Reserve Your Seat</h3>
 
-                <p className="text-gray-300 mb-4">
+                <p className="text-gray-300 mb-4 ">
                   Limited seats. Our counsellor will call you in 5 minutes.
                 </p>
 
@@ -83,7 +83,7 @@ export default function AdmissionModal({ isOpen, onClose }) {
               </div>
 
               {/* Right form */}
-              <form onSubmit={submitForm} className="space-y-4">
+              <form onSubmit={submitForm} className="space-y-4 mt-5">
                 <input
                   required
                   placeholder="Full Name"
@@ -141,7 +141,7 @@ export default function AdmissionModal({ isOpen, onClose }) {
               {/* close */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 w-10 h-10 bg-white/10 text-white rounded-full"
+                className="absolute top-1 right-4 w-10 h-10 bg-white/10 text-white rounded-full"
               >
                 ✕
               </button>
