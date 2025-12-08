@@ -1,45 +1,55 @@
 // src/App.jsx
 import "./App.css";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./Layouts/MainLayout";
-
-import Home from "./Pages/Home";
-import Courses from "./Pages/Courses";
-import About from "./Pages/About";
-import Blogs from "./Pages/Blogs";
-import Contact from "./Pages/Contact";
-import SingleCourse from "./Pages/SingleCourse";
-import AdmissionForm from "./Pages/AdmissionForm";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
 import ScrollToTop from "./Components/ScrollToTop";
 
-// 👇 YE IMPORT PAKKA HONA CHAHIYE
-import BlogDetails from "./Pages/BlogDetails";
+// 🔹 Lazy-loaded pages (code-splitting)
+const Home = lazy(() => import("./Pages/Home"));
+const Courses = lazy(() => import("./Pages/Courses"));
+const About = lazy(() => import("./Pages/About"));
+const Blogs = lazy(() => import("./Pages/Blogs"));
+const Contact = lazy(() => import("./Pages/Contact"));
+const SingleCourse = lazy(() => import("./Pages/SingleCourse"));
+const AdmissionForm = lazy(() => import("./Pages/AdmissionForm"));
+const Login = lazy(() => import("./Pages/Login"));
+const Register = lazy(() => import("./Pages/Register"));
+const BlogDetails = lazy(() => import("./Pages/BlogDetails"));
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
+
       <MainLayout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/about" element={<About />} />
+        {/* 🔸 Suspense REQUIRED for lazy components */}
+        <Suspense
+          fallback={
+            <div className="min-h-[60vh] flex items-center justify-center text-sm text-gray-500">
+              Loading...
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/about" element={<About />} />
 
-          {/* LIST PAGE */}
-          <Route path="/blogs" element={<Blogs />} />
+            {/* LIST PAGE */}
+            <Route path="/blogs" element={<Blogs />} />
 
-          {/* DETAIL PAGE */}
-          <Route path="/blogs/:slug" element={<BlogDetails />} />
+            {/* DETAIL PAGE */}
+            <Route path="/blogs/:slug" element={<BlogDetails />} />
 
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/course/:id" element={<SingleCourse />} />
-          <Route path="/admission" element={<AdmissionForm />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/course/:id" element={<SingleCourse />} />
+            <Route path="/admission" element={<AdmissionForm />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </Suspense>
       </MainLayout>
     </Router>
   );
