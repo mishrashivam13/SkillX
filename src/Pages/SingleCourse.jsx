@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import courses from "../Data/coursesData";
 import { useState } from "react";
+import AdmissionModal from "../Components/AdmissionModal";
 
 export default function SingleCourse() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ export default function SingleCourse() {
       </p>
     );
   }
+    const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="max-w-7xl mx-auto px-5 py-12">
@@ -133,9 +135,7 @@ export default function SingleCourse() {
         {/* ================= RIGHT SIDEBAR ================= */}
         <div className="bg-white shadow p-6 h-fit rounded-lg sticky top-24 border">
 
-          <h2 className="text-3xl font-extrabold text-orange-500">
-            ₹ 9,999
-          </h2>
+            
 
           <p className="text-gray-600 mt-2">
             Full course + Live projects + Certificate
@@ -143,21 +143,26 @@ export default function SingleCourse() {
 
           {/* CALL COUNSELOR */}
           <a
-            href="tel:+917070905090"
+            href="tel:+917852017051"
             className="block w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-md mt-6 text-lg text-center transition"
           >
             📞 Call Counselor
           </a>
 
           {/* APPLY */}
-          <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-md mt-3 text-lg transition">
-            Enroll Now
-          </button>
+            <button 
+        onClick={() => setShowModal(true)}
+        className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-md mt-3 text-lg transition"
+      >
+        Enroll Now
+      </button>
 
-          {/* DOWNLOAD */}
-          <button className="w-full border border-orange-500 text-orange-500 py-3 rounded-md mt-3 hover:bg-orange-50 transition">
-            Download Syllabus
-          </button>
+      <AdmissionModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+      />
+
+        
 
           <div className="mt-6">
             <h4 className="font-semibold mb-2">

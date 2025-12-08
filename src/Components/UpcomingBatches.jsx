@@ -11,11 +11,11 @@ import Net from "../assets/NET-1.png";
 import Java from "../assets/Java.png";
 
 const BASE_BATCHES = [
-  { id: "b1", title: "MERN STACK", branch: "Jaipur", start: "22-11-2025", image: Mern },
-  { id: "b2", title: "AWS DevOps", branch: "Jaipur", start: "22-11-2025", image: Aws },
-  { id: "b3", title: "CYBER SECURITY + GEN AI", branch: "Jaipur", start: "22-11-2025", image: Cyber },
-  { id: "b4", title: ".NET FULL STACK", branch: "Jaipur", start: "22-11-2025", image: Net },
-  { id: "b5", title: "Java Full Stack", branch: "Jaipur", start: "22-11-2025", image: Java },
+  { id: "b1", title: "MERN STACK", branch: "Jaipur", start: "22-12-2025", image: Mern },
+  { id: "b2", title: "AWS DevOps", branch: "Jaipur", start: "22-12-2025", image: Aws },
+  { id: "b3", title: "CYBER SECURITY + GEN AI", branch: "Jaipur", start: "22-12-2025", image: Cyber },
+  { id: "b4", title: ".NET FULL STACK", branch: "Jaipur", start: "22-12-2025", image: Net },
+  { id: "b5", title: "Java Full Stack", branch: "Jaipur", start: "22-12-2025", image: Java },
 ];
 
 export default function UpcomingBatches({ batches = BASE_BATCHES }) {
@@ -145,7 +145,7 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
 
                     {/* CTA Button */}
                     <a
-                      href="tel:+917878058724"
+                      href="tel:+917852017051"
                       onClick={(e) => e.stopPropagation()}
                       className="w-full mt-5 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg"
                     >

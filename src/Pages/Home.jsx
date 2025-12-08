@@ -2,19 +2,21 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rocket, Shield, PlayCircle } from "lucide-react";
 
 import CourseGrid from "../Components/CourseGrid";
 import AdmissionModal from "../Components/AdmissionModal";
 import ContactCallSection from '../Components/ContactCallSection';
+import FloatingIcons from "../Components/FloatingIcons";
+import TestimonialsSection from '../Components/TestimonialsSection'
 
 import CourseCard from "../Components/CourseCard";
 import courses from "../Data/coursesData";
 import WhyChooseKotiBox from "../Components/WhyChooseKotiBox";
 import UpcomingBatches from "../Components/UpcomingBatches";
-
+import Image from '../assets/SkillX.png'
 /* Brand colors */
 const sxNavy = "#102A44";
 const sxOrange = "#F28C3A";
@@ -45,7 +47,7 @@ export default function Home() {
         <div className="min-h-screen text-white">
           <div
             className="fixed inset-0 -z-10"
-            style={{ background: `linear-gradient(135deg, ${sxNavy} 0%, #0d2238 50%, #1a3555 100%)` }}
+            style={{backgroundImage:`url(${Image})`, backgroundSize:"cover"}}
           />
 
           {/* Floating Orbs */}
@@ -150,13 +152,6 @@ export default function Home() {
                       />
                     </motion.button>
 
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      className="px-10 py-5 rounded-full border-2 border-white/20 backdrop-blur-xl bg-white/6 flex items-center gap-4 hover:bg-white/12 transition"
-                    >
-                      <PlayCircle className="w-7 h-7" />
-                      Watch Success Stories
-                    </motion.button>
                   </motion.div>
                 </motion.div>
               </AnimatePresence>
@@ -230,8 +225,11 @@ export default function Home() {
 
         <UpcomingBatches />
         <CourseGrid courses={courses} />
+        <TestimonialsSection />
         <ContactCallSection />
         <WhyChooseKotiBox />
+        <FloatingIcons />
+        
       </div>
 
       {/* Admission Modal */}

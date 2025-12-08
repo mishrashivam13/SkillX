@@ -43,11 +43,11 @@ export default function ContactCallSection({
 <div className="flex flex-col">
   <span className="text-sm text-white/80 mb-2">WhatsApp</span>
   <a
-    href="https://wa.me/917021247809"
+    href="https://wa.me/917852017051"
     target="_blank"
     rel="noreferrer"
     className="inline-flex items-center gap-3 bg-white text-[#0b4f7a] px-6 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 font-bold text-lg"
-    aria-label="WhatsApp +91-7021247809"
+    aria-label="WhatsApp +91-7852017051"
   >
     <svg
       className="w-6 h-6 flex-shrink-0"
@@ -61,7 +61,7 @@ export default function ContactCallSection({
         d="M12 2C6.48 2 2 6.17 2 11.58c0 1.93.57 3.72 1.64 5.3L2 22l5.27-1.6A10.5 10.5 0 0 0 12 21.16c5.52 0 10-4.17 10-9.58C22 6.17 17.52 2 12 2Zm0 17.6c-1.6 0-3.16-.44-4.52-1.28l-.32-.19-3.12.95.96-3-.2-.31A7.39 7.39 0 0 1 4.6 11.6C4.6 7.74 8 4.6 12 4.6s7.4 3.14 7.4 7-3.4 8-7.4 8Zm4-5c-.22-.11-1.3-.64-1.5-.71-.2-.07-.35-.11-.5.11-.15.22-.57.71-.7.86-.13.15-.26.17-.48.06-.22-.11-.93-.38-1.77-1.18-.65-.61-1.08-1.36-1.2-1.59-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.03-.28-.02-.39-.06-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38H9c-.15 0-.4.06-.61.28-.2.22-.8.78-.8 1.9 0 1.11.82 2.19.94 2.34.11.15 1.62 2.63 4.02 3.69.56.24.99.38 1.33.49.56.18 1.07.15 1.47.09.45-.07 1.3-.53 1.48-1.05.18-.52.18-.96.12-1.05-.06-.09-.2-.15-.41-.25Z"
       />
     </svg>
-    <span>+91-7021247809</span>
+    <span>+91-7852017051</span>
   </a>
 </div>
 

@@ -150,9 +150,22 @@ export default function Contact() {
                     className="mt-2 h-11 px-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200 bg-white transition-shadow duration-200"
                   >
                     <option value="">Select a Course</option>
-                    <option>Full Stack</option>
+                    <option>MERN Stack + AI</option>
+                    <option>Java Full Stack + AI</option>
+                    <option>DOt Net +AI</option>
                     <option>Data Science</option>
+                    <option>Android/IOS</option>
+                    <option>Cloud Computing</option>
+                    <option>Cyber Security + AI</option>
+                    <option>Python Programming</option>
+                    <option>Business Analytics</option>
+                    <option>AWS</option>
+                    <option>DevOps</option>
                     <option>UI/UX</option>
+                    <option>Java Programming</option>
+                    <option>Data Analytics</option>
+                    <option>Machine Learning</option>
+                    <option>Digital Marketing + AI</option>
                   </select>
                 </label>
 

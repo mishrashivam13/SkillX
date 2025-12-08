@@ -119,14 +119,7 @@ export default function WhyChooseKotiBox({ imageSrc = KOTIBOX_IMG }) {
                   <p className="text-gray-600 text-sm leading-relaxed">
                     {c.text}
                   </p>
-                  <div className="mt-3">
-                    <a
-                      href="#"
-                      className="text-orange-500 text-sm font-medium inline-block mt-2 hover:underline"
-                    >
-                      Read More
-                    </a>
-                  </div>
+                 
                 </div>
               </div>
             </article>

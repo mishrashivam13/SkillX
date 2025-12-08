@@ -16,7 +16,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-950 text-gray-300 py-12 mt-16 border-t border-white/5">
+    <footer className="bg-gray-950 text-gray-300 py-12  border-t border-white/5">
       <div className="max-w-7xl mx-auto px-5 space-y-10">
 
         {/* TOP SECTION */}
@@ -28,9 +28,15 @@ export default function Footer() {
               <img src={Logo} alt="SkillX Logo" className="w-25 h-14" />
 
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-gray-400">
-                  Powered by
-                </p>
+               <p className="text-xs uppercase tracking-[0.2em] text-gray-400">
+  Powered by
+</p>
+
+<h1 className="text-sm md:text-base font-semibold leading-snug text-gray-200 max-w-xs">
+  KotiBox Global <br />
+  Technologies (OPC) Pvt. Limited
+</h1>
+
                 <h1 className="text-2xl font-extrabold tracking-wide">
                   <span className="text-primary">Skill</span>X
                 </h1>
@@ -105,7 +111,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="#"
+                  href="https://www.instagram.com/kotiboxskillx_academy?igsh=MTAxd2ZmZzZnenp3eA=="
                   className="p-2 rounded-full border border-gray-700 hover:border-primary hover:text-primary transition"
                 >
                   <Instagram className="w-4 h-4" />
