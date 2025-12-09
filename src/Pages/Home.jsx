@@ -1,3 +1,4 @@
+// src/Pages/Home.jsx
 "use client";
 
 import React, { useState } from "react";
@@ -12,7 +13,7 @@ import AdmissionModal from "../Components/AdmissionModal";
 
 import courses from "../Data/coursesData";
 
-// NEW components
+// split components
 import HeroSection from "../Components/home/HeroSection";
 import PopularCoursesSection from "../Components/home/PopularCoursesSection";
 

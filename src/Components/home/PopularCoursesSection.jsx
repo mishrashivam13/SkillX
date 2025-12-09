@@ -1,3 +1,4 @@
+// src/Components/home/PopularCoursesSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
 import CourseCard from "../CourseCard";

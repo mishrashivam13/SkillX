@@ -1,3 +1,4 @@
+// src/Components/home/HeroSection.jsx
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rocket, Shield } from "lucide-react";
@@ -33,6 +34,8 @@ export default function HeroSection({ onOpenAdmission }) {
     return () => clearInterval(interval);
   }, []);
 
+  const activeSlide = heroSlides[currentSlide];
+
   return (
     <div className="relative overflow-x-hidden">
       <div className="min-h-screen text-white">
@@ -43,24 +46,29 @@ export default function HeroSection({ onOpenAdmission }) {
         />
 
         {/* Floating Orbs */}
-        <div className="fixed inset-0 -z-20 pointer-events-none opacity-30">
-          <motion.div
-            animate={{ x: [-120, 180, -120], y: [-100, 140, -100] }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute top-20 left-10 w-96 h-96 rounded-full blur-3xl"
-            style={{
-              background: `radial-gradient(circle, ${sxOrange}88, transparent 70%)`,
-            }}
-          />
-          <motion.div
-            animate={{ x: [120, -180, 120], y: [100, -140, 100] }}
-            transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-20 right-10 w-80 h-80 rounded-full blur-3xl"
-            style={{
-              background: `radial-gradient(circle, ${sxNavy}cc, transparent 70%)`,
-            }}
-          />
-        </div>
+      {/* Floating Orbs – disabled on mobile for performance */}
+<div className="fixed inset-0 -z-20 pointer-events-none opacity-30 hidden md:block">
+
+  <motion.div
+    animate={{ x: [-120, 180, -120], y: [-100, 140, -100] }}
+    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+    className="absolute top-20 left-10 w-96 h-96 rounded-full blur-3xl"
+    style={{
+      background: `radial-gradient(circle, ${sxOrange}88, transparent 70%)`,
+    }}
+  />
+
+  <motion.div
+    animate={{ x: [120, -180, 120], y: [100, -140, 100] }}
+    transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+    className="absolute bottom-20 right-10 w-80 h-80 rounded-full blur-3xl"
+    style={{
+      background: `radial-gradient(circle, ${sxNavy}cc, transparent 70%)`,
+    }}
+  />
+
+</div>
+
 
         {/* HERO SECTION CONTENT */}
         <section className="relative min-h-screen flex items-center justify-center px-6">
@@ -89,7 +97,7 @@ export default function HeroSection({ onOpenAdmission }) {
 
                 {/* Title */}
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight">
-                  {heroSlides[currentSlide].title.split(" ").map((word, i) => (
+                  {activeSlide.title.split(" ").map((word, i) => (
                     <motion.span
                       key={i}
                       initial={{ opacity: 0, y: 100 }}
@@ -100,22 +108,26 @@ export default function HeroSection({ onOpenAdmission }) {
                       {word}{" "}
                     </motion.span>
                   ))}
-                  <br />
-                  <span
-                    style={{
-                      background: `linear-gradient(90deg, ${sxOrange}, #ff9a56)`,
-                      WebkitBackgroundClip: "text",
-                      backgroundClip: "text",
-                      color: "transparent",
-                    }}
-                  >
-                    {heroSlides[currentSlide].highlight}
-                  </span>
+                  {activeSlide.highlight && (
+                    <>
+                      <br />
+                      <span
+                        style={{
+                          background: `linear-gradient(90deg, ${sxOrange}, #ff9a56)`,
+                          WebkitBackgroundClip: "text",
+                          backgroundClip: "text",
+                          color: "transparent",
+                        }}
+                      >
+                        {activeSlide.highlight}
+                      </span>
+                    </>
+                  )}
                 </h1>
 
                 {/* Subtitle */}
                 <p className="mt-8 text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto">
-                  {heroSlides[currentSlide].subtitle}
+                  {activeSlide.subtitle}
                 </p>
 
                 {/* CTA */}
