@@ -41,7 +41,7 @@ export default function HeroSection({ onOpenAdmission }) {
 
   return (
     <div className="relative overflow-hidden">
-      <div className="min-h-screen text-white">
+      <div className="h-[80vh] md:h-screen text-white">
         {/* Background Image */}
         <div
           className="absolute md:fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
@@ -70,7 +70,7 @@ export default function HeroSection({ onOpenAdmission }) {
         </div>
 
         {/* HERO SECTION CONTENT */}
-        <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 pb-16 sm:pb-20 md:pb-24">
+        <section className="relative h-full flex items-center justify-center px-4 sm:px-6 pt-20 pb-10">
           {/* Static overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent -z-10" />
 
@@ -78,36 +78,42 @@ export default function HeroSection({ onOpenAdmission }) {
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide}
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -60 }}
-                transition={{ duration: 0.8 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="min-h-[230px] sm:min-h-[260px] flex flex-col items-center justify-start"
               >
                 {/* Badge */}
                 <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
+                  initial={{ scale: 0.95, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-8 py-2.5 sm:py-3 rounded-full mb-6 sm:mb-10 backdrop-blur-xl border border-white/10"
+                  className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-8 py-2.5 sm:py-3 rounded-full mb-6 sm:mb-8 backdrop-blur-xl border border-white/10"
                   style={{ background: "rgba(255,255,255,0.06)" }}
                 >
-                  <Shield className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: sxOrange }} />
+                  <Shield
+                    className="w-5 h-5 sm:w-6 sm:h-6"
+                    style={{ color: sxOrange }}
+                  />
                   <span className="text-xs sm:text-sm font-semibold tracking-wide">
                     100% PLACEMENT GUARANTEE
                   </span>
                 </motion.div>
 
-                {/* Title */}
+                {/* Title (height-stable, animated inside) */}
                 <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight sm:leading-[1.15]">
                   {activeSlide.title.split(" ").map((word, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{ opacity: 0, y: 100 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                      className="inline-block"
-                    >
-                      {word}{" "}
-                    </motion.span>
+                    <span key={i} className="inline-block overflow-hidden">
+                      <motion.span
+                        initial={{ y: "100%", opacity: 0 }}
+                        animate={{ y: "0%", opacity: 1 }}
+                        exit={{ y: "-100%", opacity: 0 }}
+                        transition={{ delay: i * 0.05, duration: 0.4 }}
+                        className="inline-block"
+                      >
+                        {word}&nbsp;
+                      </motion.span>
+                    </span>
                   ))}
                   {activeSlide.highlight && (
                     <>
@@ -128,16 +134,16 @@ export default function HeroSection({ onOpenAdmission }) {
                 </h1>
 
                 {/* Subtitle */}
-                <p className="mt-5 sm:mt-6 text-sm sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto px-2">
+                <p className="mt-4 sm:mt-5 text-sm sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto px-2">
                   {activeSlide.subtitle}
                 </p>
 
                 {/* CTA */}
                 <motion.div
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
+                  transition={{ delay: 0.6 }}
+                  className="mt-7 sm:mt-9 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
                 >
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -164,7 +170,7 @@ export default function HeroSection({ onOpenAdmission }) {
             </AnimatePresence>
 
             {/* Slider Dots */}
-            <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3">
+            <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3">
               {heroSlides.map((_, i) => (
                 <button
                   key={i}
