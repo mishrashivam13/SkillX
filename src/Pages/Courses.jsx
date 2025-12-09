@@ -195,9 +195,73 @@ export default function Courses() {
         </div>
       </motion.div>
 
+      {/* ✅ Mobile Filters Drawer */}
+      <AnimatePresence>
+        {mobileFiltersOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            className="md:hidden mb-4"
+          >
+            <div className="bg-white border rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="font-medium">Filters</h4>
+                <button
+                  onClick={() => setMobileFiltersOpen(false)}
+                  className="text-sm text-gray-500"
+                >
+                  Close
+                </button>
+              </div>
+
+              {/* Category chips */}
+              <div className="mb-3">
+                <h5 className="text-xs font-semibold mb-2">Category</h5>
+                <div className="flex flex-wrap gap-2">
+                  {categories.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => setSelectedCategory(cat)}
+                      className={`px-3 py-1 rounded-full text-sm border ${
+                        selectedCategory === cat
+                          ? "bg-primary text-white border-primary"
+                          : "bg-white"
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Mode chips */}
+              <div>
+                <h5 className="text-xs font-semibold mb-2">Mode</h5>
+                <div className="flex flex-wrap gap-2">
+                  {modes.map((m) => (
+                    <button
+                      key={m}
+                      onClick={() => setSelectedMode(m)}
+                      className={`px-3 py-1 rounded-full text-sm border ${
+                        selectedMode === m
+                          ? "bg-primary text-white border-primary"
+                          : "bg-white"
+                      }`}
+                    >
+                      {m}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Layout */}
       <div className="grid md:grid-cols-[260px_1fr] gap-8">
-        {/* Sidebar */}
+        {/* Sidebar (desktop) */}
         <aside className="hidden md:block">
           <motion.div className="sticky top-24 bg-white border rounded-lg p-5 shadow-sm">
             <h3 className="text-lg font-semibold mb-3">Filters</h3>
