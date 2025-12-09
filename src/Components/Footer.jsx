@@ -6,7 +6,7 @@ import courses from "../Data/coursesData";
 
 // Fast lookup map
 const courseTitleMap = Object.fromEntries(
-  courses.map(c => [c.title.toLowerCase(), c])
+  courses.map((c) => [c.title.toLowerCase(), c])
 );
 
 const getCourseByTitle = (displayTitle) => {
@@ -93,9 +93,13 @@ export default function Footer() {
 
   const CourseLink = ({ title, children }) => {
     const course = getCourseByTitle(title);
-    if (!course) return <span className="hover:text-white transition">{children}</span>;
+    if (!course)
+      return <span className="hover:text-white transition">{children}</span>;
     return (
-      <Link to={`/course/${course.id}`} className="hover:text-white transition block">
+      <Link
+        to={`/course/${course.id}`}
+        className="hover:text-white transition block"
+      >
         {children}
       </Link>
     );
@@ -123,17 +127,24 @@ export default function Footer() {
     };
 
     const lower = text.toLowerCase();
-    const matched = Object.keys(keywordMap).find(k => lower.includes(k));
+    const matched = Object.keys(keywordMap).find((k) => lower.includes(k));
     const cleanTitle = matched ? keywordMap[matched] : null;
     const course = cleanTitle ? getCourseByTitle(cleanTitle) : null;
 
     if (!course) {
-      return <div className="pb-2 border-b border-dotted border-slate-600">{text}</div>;
+      return (
+        <div className="pb-2 border-b border-dotted border-slate-600">
+          {text}
+        </div>
+      );
     }
 
     return (
       <div className="pb-2 border-b border-dotted border-slate-600">
-        <Link to={`/course/${course.id}`} className="hover:text-white transition">
+        <Link
+          to={`/course/${course.id}`}
+          className="hover:text-white transition"
+        >
           {text}
         </Link>
       </div>
@@ -141,42 +152,43 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#242f4d] text-slate-100 pt-12 pb-8 ">
+    <footer className="bg-[#242f4d] text-slate-100 pt-12 pb-8">
       <div className="max-w-7xl mx-auto px-5">
-
         {/* TOP 4 COLUMNS */}
         <div className="grid gap-10 md:grid-cols-4 mb-12">
-
-          {/* Popular Courses */}
+          {/* 1) Popular Courses (NO logo here) */}
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <img src={Logo} alt="KotiBoxSkillX" className="h-11 w-auto object-contain" />
-              <p className="text-xs uppercase tracking-widest text-slate-400">
-                Our Popular Courses
-              </p>
-            </div>
+            <h4 className="text-lg font-semibold mb-4 text-white">
+              Our Popular Courses
+            </h4>
             <ul className="space-y-2 text-sm">
-              {popularCourses.map(c => (
-                <li key={c}><CourseLink title={c}>{c}</CourseLink></li>
+              {popularCourses.map((c) => (
+                <li key={c}>
+                  <CourseLink title={c}>{c}</CourseLink>
+                </li>
               ))}
             </ul>
           </div>
 
-          {/* Other Top Courses */}
+          {/* 2) Other Top Courses */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Other Top Courses</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">
+              Other Top Courses
+            </h4>
             <ul className="space-y-2 text-sm">
-              {otherTopCourses.map(c => (
-                <li key={c}><CourseLink title={c}>{c}</CourseLink></li>
+              {otherTopCourses.map((c) => (
+                <li key={c}>
+                  <CourseLink title={c}>{c}</CourseLink>
+                </li>
               ))}
             </ul>
           </div>
 
-          {/* Policies */}
+          {/* 3) Policies */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">Policies</h4>
             <ul className="space-y-2 text-sm">
-              {policies.map(p => (
+              {policies.map((p) => (
                 <li key={p.label}>
                   <Link to={p.to} className="hover:text-white transition">
                     {p.label}
@@ -186,32 +198,54 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Follow Us + Powered By */}
+          {/* 4) Follow Us + Get updates + Logo + Powered by */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Follow Us!</h4>
-            
+            <h4 className="text-lg font-semibold mb-4 text-white">
+              Follow Us!
+            </h4>
+
             <div className="flex items-center gap-4 mb-5 text-[#ffcc00]">
-              <a href="#" aria-label="Facebook"><Facebook className="w-6 h-6" /></a>
-              <a 
-                href="https://www.instagram.com/kotiboxskillx_academy" 
-                target="_blank" 
+              <a href="#" aria-label="Facebook">
+                <Facebook className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.instagram.com/kotiboxskillx_academy"
+                target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
               >
                 <Instagram className="w-6 h-6" />
               </a>
-              <a href="#" aria-label="LinkedIn"><Linkedin className="w-6 h-6" /></a>
+              <a href="#" aria-label="LinkedIn">
+                <Linkedin className="w-6 h-6" />
+              </a>
             </div>
 
+            {/* Get updates text */}
             <p className="text-sm text-slate-300 leading-relaxed mb-4">
-              Get updates about new batches, workshops and placement results from KotiBoxSkillX Academy, Jaipur.
+              Get updates about new batches, workshops and placement results
+              from KotiBoxSkillX Academy, Jaipur.
             </p>
 
-            <p className="text-xs text-slate-400 font-medium">
-              Powered by <span className="text-white font-bold">KotiBox Global Technology (OPC) Pvt. Ltd.</span> Jaipur
-            </p>
+            {/* ⬇️ Logo + Powered by moved HERE */}
+            <div className="mt-4 flex items-center gap-4">
+              <img
+                src={Logo}
+                alt="KotiBoxSkillX"
+                className="h-16 w-auto object-contain"
+              />
+              <div className="leading-snug">
+                <p className="text-[13px] text-slate-300">
+                  Powered by:
+                  <br />
+                  <span className="font-semibold text-white">
+                    KotiBox Global Technology (OPC) Pvt. Ltd. 
+                  </span>
+                 
+                </p>
+              </div>
+            </div>
           </div>
-
         </div>
 
         {/* JAIPUR TRAINING STRIP */}
@@ -225,7 +259,7 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-4 text-xs md:text-sm mb-12 text-slate-300">
           {[jaipurCol1, jaipurCol2, jaipurCol3, jaipurCol4].map((col, idx) => (
             <div key={idx} className="space-y-3">
-              {col.map(text => (
+              {col.map((text) => (
                 <JaipurLink key={text} text={text} />
               ))}
             </div>
@@ -235,7 +269,11 @@ export default function Footer() {
         {/* BOTTOM BAR */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-700 text-xs text-slate-400">
           <p className="text-center md:text-left">
-            Copyright © {year} <span className="font-bold text-white">KotiBox Global Technologies</span>, All Rights Reserved.
+            Copyright © {year}{" "}
+            <span className="font-bold text-white">
+              KotiBoxSkillX Academy
+            </span>
+            , All Rights Reserved.
           </p>
           <button
             onClick={scrollToTop}
@@ -245,7 +283,6 @@ export default function Footer() {
             Back to top
           </button>
         </div>
-
       </div>
     </footer>
   );
