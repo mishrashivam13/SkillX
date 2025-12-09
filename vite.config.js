@@ -11,7 +11,7 @@ export default defineConfig({
 
     rollupOptions: {
       output: {
-        // 🔹 Better chunk splitting
+       
         manualChunks(id) {
           if (id.includes("node_modules")) {
             if (id.includes("react")) return "react-vendor";

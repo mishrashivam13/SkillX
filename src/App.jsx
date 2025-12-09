@@ -1,12 +1,12 @@
-// src/App.jsx
 import "./App.css";
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./Layouts/MainLayout";
 import ScrollToTop from "./Components/ScrollToTop";
+import Loader from "./Components/Loader";
 
-// 🔹 Lazy-loaded pages (code-splitting)
+// Lazy-loaded pages
 const Home = lazy(() => import("./Pages/Home"));
 const Courses = lazy(() => import("./Pages/Courses"));
 const About = lazy(() => import("./Pages/About"));
@@ -24,23 +24,13 @@ function App() {
       <ScrollToTop />
 
       <MainLayout>
-        {/* 🔸 Suspense REQUIRED for lazy components */}
-        <Suspense
-          fallback={
-            <div className="min-h-[60vh] flex items-center justify-center text-sm text-gray-500">
-              Loading...
-            </div>
-          }
-        >
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/about" element={<About />} />
 
-            {/* LIST PAGE */}
             <Route path="/blogs" element={<Blogs />} />
-
-            {/* DETAIL PAGE */}
             <Route path="/blogs/:slug" element={<BlogDetails />} />
 
             <Route path="/contact" element={<Contact />} />
