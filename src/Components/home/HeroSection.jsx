@@ -169,24 +169,7 @@ export default function HeroSection({ onOpenAdmission }) {
               </motion.div>
             </AnimatePresence>
 
-            {/* Slider Dots */}
-            <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3">
-              {heroSlides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentSlide(i)}
-                  className={`h-2.5 sm:h-3 rounded-full transition-all duration-300 ${
-                    i === currentSlide ? "w-10 sm:w-16" : "w-3 sm:w-4"
-                  }`}
-                  style={{
-                    background:
-                      i === currentSlide
-                        ? sxOrange
-                        : "rgba(255,255,255,0.3)",
-                  }}
-                />
-              ))}
-            </div>
+         
           </div>
         </section>
       </div>
