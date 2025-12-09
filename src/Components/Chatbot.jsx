@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Bot, X, Send, Info } from "lucide-react";
+import { X, Send, Info } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import BotAvatar from "../assets/chatbot/cute-bot-say-users-hello-chatbot-greets-online-consultation/195.png";
 
 export default function Chatbot() {
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ export default function Chatbot() {
     },
   ]);
 
-  // Quick suggestion buttons
   const quickQuestions = [
     { label: "Available Courses", value: "Tell me about your courses" },
     { label: "Fees & Offers", value: "What are the course fees?" },
@@ -29,9 +29,7 @@ export default function Chatbot() {
 
     const userMessage = { from: "user", text };
 
-    // Basic auto replies (you can replace with API later)
     let reply = "Thanks! Our team will connect with you soon. 😊";
-
     const lower = text.toLowerCase();
 
     if (lower.includes("course"))
@@ -62,7 +60,6 @@ export default function Chatbot() {
     handleSend(value);
   };
 
-  // For "View details" buttons
   const handleDetailsClick = (type) => {
     if (type === "courses") navigate("/courses");
     if (type === "contact") navigate("/contact");
@@ -74,11 +71,14 @@ export default function Chatbot() {
       {/* CHAT WINDOW */}
       {open && (
         <div className="fixed bottom-20 right-6 w-[320px] max-w-[90vw] h-[460px] bg-white shadow-2xl rounded-xl flex flex-col z-50">
-
           {/* Header */}
           <div className="bg-orange-500 text-white px-4 py-3 rounded-t-xl flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <Bot size={20} />
+              <img
+                src={BotAvatar}
+                alt="Chatbot Avatar"
+                className="w-8 h-8 rounded-full border border-white object-cover"
+              />
               <span className="font-bold text-sm">KotiBoxSkillX Assistant</span>
             </div>
             <button onClick={() => setOpen(false)}>
@@ -164,9 +164,14 @@ export default function Chatbot() {
       {/* FLOATING BUTTON */}
       <button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 bg-orange-500 hover:bg-orange-600 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center z-40"
+        className="fixed bottom-6 right-6 bg-orange-500 hover:bg-orange-600 text-white w-20 h-20 rounded-full shadow-xl flex items-center justify-center z-40"
       >
-        <Bot size={26} />
+       <img
+  src={BotAvatar}
+  alt="Chatbot Avatar"
+  className="w-20 h-20 rounded-full object-cover"
+/>
+
       </button>
     </>
   );

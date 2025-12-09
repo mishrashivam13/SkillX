@@ -1,5 +1,6 @@
 import React from "react";
 import { Clock, Users, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom"; // ✅ ADD THIS
 
 export default function CourseCard({
   course = {},
@@ -51,10 +52,8 @@ export default function CourseCard({
           "
         />
 
-        {/* gradient overlay on hover */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
 
-        {/* Top-left chips */}
         <div className="absolute left-3 top-3 flex flex-wrap items-center gap-2">
           {category && (
             <span className="rounded-full bg-white/80 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-slate-700 backdrop-blur">
@@ -68,7 +67,6 @@ export default function CourseCard({
           )}
         </div>
 
-        {/* Top-right badge */}
         {(isTrending || isNew) && (
           <div className="absolute right-3 top-3">
             <span className="rounded-full bg-amber-500 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white shadow-sm">
@@ -80,7 +78,6 @@ export default function CourseCard({
 
       {/* Content */}
       <div className="flex flex-1 flex-col px-4 pb-4 pt-3">
-        {/* Title */}
         <h4
           className="
             text-base sm:text-lg font-semibold
@@ -93,12 +90,11 @@ export default function CourseCard({
           {title || "Untitled Course"}
         </h4>
 
-        {/* Description */}
         <p className="mt-1 text-xs sm:text-sm text-slate-600 line-clamp-2">
-          {shortDesc || "Practical course with real projects and placement support."}
+          {shortDesc ||
+            "Practical course with real projects and placement support."}
         </p>
 
-        {/* Meta row */}
         <div className="mt-4 flex items-center justify-between text-[11px] sm:text-xs text-slate-500">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
@@ -112,25 +108,22 @@ export default function CourseCard({
             </span>
           </div>
 
-          {/* Price */}
           <div className="text-right">
             <p
               className="text-sm sm:text-base font-semibold"
               style={{ color: theme.navy }}
             >
-             
+              {/* you can show price here if you want */}
             </p>
-          
           </div>
         </div>
 
-        {/* Divider */}
         <div className="mt-4 h-px w-full bg-slate-100" />
 
         {/* CTA row */}
         <div className="mt-3 flex items-center justify-between gap-2">
-          <a
-            href={href}
+          <Link
+            to={href} // ✅ SPA navigation
             className="
               inline-flex items-center gap-2
               rounded-full border border-transparent
@@ -146,7 +139,7 @@ export default function CourseCard({
           >
             <span>Explore course</span>
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </a>
+          </Link>
 
           <div className="flex flex-col items-end text-[11px] text-slate-400">
             {students && (
