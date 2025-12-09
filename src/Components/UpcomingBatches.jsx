@@ -1,8 +1,15 @@
 // src/Components/UpcomingBatches.jsx
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Phone, Calendar, MapPin } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Phone,
+  Calendar,
+  MapPin,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Mern from "../assets/wp8903890.jpg";
 import Cyber from "../assets/Cyber.png";
@@ -11,11 +18,41 @@ import Net from "../assets/NET-1.png";
 import Java from "../assets/Java.png";
 
 const BASE_BATCHES = [
-  { id: "b1", title: "MERN STACK", branch: "Jaipur", start: "22-12-2025", image: Mern },
-  { id: "b2", title: "AWS DevOps", branch: "Jaipur", start: "22-12-2025", image: Aws },
-  { id: "b3", title: "CYBER SECURITY + GEN AI", branch: "Jaipur", start: "22-12-2025", image: Cyber },
-  { id: "b4", title: ".NET FULL STACK", branch: "Jaipur", start: "22-12-2025", image: Net },
-  { id: "b5", title: "Java Full Stack", branch: "Jaipur", start: "22-12-2025", image: Java },
+  {
+    id: "b1",
+    title: "MERN STACK",
+    branch: "Jaipur",
+    start: "22-12-2025",
+    image: Mern,
+  },
+  {
+    id: "b2",
+    title: "AWS DevOps",
+    branch: "Jaipur",
+    start: "22-12-2025",
+    image: Aws,
+  },
+  {
+    id: "b3",
+    title: "CYBER SECURITY + GEN AI",
+    branch: "Jaipur",
+    start: "22-12-2025",
+    image: Cyber,
+  },
+  {
+    id: "b4",
+    title: ".NET FULL STACK",
+    branch: "Jaipur",
+    start: "22-12-2025",
+    image: Net,
+  },
+  {
+    id: "b5",
+    title: "Java Full Stack",
+    branch: "Jaipur",
+    start: "22-12-2025",
+    image: Java,
+  },
 ];
 
 export default function UpcomingBatches({ batches = BASE_BATCHES }) {
@@ -63,9 +100,10 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900">
-            Upcoming Batches
-          </h3>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900">
+  Upcoming Batches
+</h2>
+
           <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
             Secure your seat in the next cohort. Limited seats available!
           </p>
@@ -79,7 +117,9 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
             onClick={scrollPrev}
             disabled={!canScrollPrev}
             className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg rounded-full p-3 transition-all hover:scale-110 hover:shadow-xl hidden md:flex items-center justify-center ${
-              !canScrollPrev ? "opacity-50 cursor-not-allowed" : "hover:bg-white"
+              !canScrollPrev
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-white"
             }`}
             aria-label="Previous batch"
           >
@@ -90,7 +130,9 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
             onClick={scrollNext}
             disabled={!canScrollNext}
             className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg rounded-full p-3 transition-all hover:scale-110 hover:shadow-xl hidden md:flex items-center justify-center ${
-              !canScrollNext ? "opacity-50 cursor-not-allowed" : "hover:bg-white"
+              !canScrollNext
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-white"
             }`}
             aria-label="Next batch"
           >
@@ -144,14 +186,14 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
                     </div>
 
                     {/* CTA Button */}
-                    <a
-                      href="tel:+917852017051"
+                    <Link
+                      to="/contact"
                       onClick={(e) => e.stopPropagation()}
-                      className="w-full mt-5 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg"
+                      className="w-full mt-5 bg-[#242f4d] hover:bg-[#1b233a] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg"
                     >
                       <Phone className="w-5 h-5" />
                       Call Now To Enroll
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.article>

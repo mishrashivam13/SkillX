@@ -26,7 +26,7 @@ const courses = [
 
   {
     id: 1,
-    title: "Full stack development",
+    title: "MERN stack development",
     desc: "MERN stack – HTML, CSS, JavaScript, React, Node.js, MongoDB",
     image: Image1,
     category: "Development",

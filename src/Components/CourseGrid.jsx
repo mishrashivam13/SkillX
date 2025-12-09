@@ -40,9 +40,10 @@ export default function CourseGrid({ courses = [] }) {
         
         {/* Header */}
         <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">
-            TOP COURSES
-          </h3>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900">
+  Top Courses
+</h2>
+
           <div className="mt-3 flex justify-center">
             <div
               className="w-32 h-1 rounded-md"

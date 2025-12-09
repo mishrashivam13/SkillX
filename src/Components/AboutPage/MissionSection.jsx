@@ -1,11 +1,12 @@
 // src/Components/AboutPage/MissionSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import TestimonialCarousel from "./TestimonialCarousel";
+// import TestimonialCarousel from "./TestimonialCarousel";
+import TestimonialsSection from "../TestimonialsSection";
 
 export default function MissionSection() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-5 bg-white">
       <div className="max-w-7xl mx-auto px-5">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -47,7 +48,7 @@ export default function MissionSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <TestimonialCarousel />
+            <TestimonialsSection />
           </motion.div>
         </div>
       </div>

@@ -43,32 +43,94 @@ export default function Courses() {
     return () => clearTimeout(t);
   }, [query]);
 
+  // 🔹 High-level filters you SEE in UI (fewer names)
   const categories = useMemo(
-    () => ["All", "Development", "Design", "AI/ML", "Data Science", "Cloud", "Cyber Security"],
+    () => [
+      "All",
+      "Development",
+      "AI & Data",
+      "Cloud & DevOps",
+      "Security",
+      "Design & Marketing",
+      "Business & Others",
+    ],
     []
   );
 
   const modes = useMemo(() => ["All", "Online", "Offline"], []);
 
+  // 🔹 Map filter => actual course.category values from coursesData
+  const categoryMap = useMemo(
+    () => ({
+      Development: [
+        "Development",
+        "Mobile app development",
+        "Game Development",
+        "Software Development",
+        "Python development",
+      ],
+      "AI & Data": [
+        "Machine learning",
+        "Data Science",
+        "Data analysis",
+        "Artificial intelligence",
+        "Generative ai",
+        "Business intelligence",
+      ],
+      "Cloud & DevOps": ["Cloud computing", "DevOps"],
+      Security: ["Cybersecurity"],
+      "Design & Marketing": ["Design", "Digital marketing"],
+      "Business & Others": [
+        "Project Management",
+        "Robotics and automation",
+        "Blockchain",
+      ],
+    }),
+    []
+  );
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
 
     let list = courses.filter((course) => {
-      return (
-        (selectedCategory === "All" || course.category === selectedCategory) &&
-        (selectedMode === "All" || course.mode === selectedMode) &&
-        (q === "" ||
-          course.title.toLowerCase().includes(q) ||
-          (course.desc && course.desc.toLowerCase().includes(q)))
-      );
+      // CATEGORY match
+      let matchesCategory = true;
+      if (selectedCategory !== "All") {
+        const mapped = categoryMap[selectedCategory];
+        if (mapped && mapped.length) {
+          matchesCategory = mapped.includes(course.category);
+        } else {
+          // fallback (shouldn't really hit if map is correct)
+          matchesCategory = course.category === selectedCategory;
+        }
+      }
+
+      // MODE match
+      const matchesMode =
+        selectedMode === "All" || course.mode === selectedMode;
+
+      // SEARCH match
+      const matchesSearch =
+        q === "" ||
+        course.title.toLowerCase().includes(q) ||
+        (course.desc && course.desc.toLowerCase().includes(q));
+
+      return matchesCategory && matchesMode && matchesSearch;
     });
 
-    if (sort === "newest") list = list.slice().sort((a, b) => (b.id || 0) - (a.id || 0));
-    if (sort === "price-low") list = list.slice().sort((a, b) => (a.price || 0) - (b.price || 0));
-    if (sort === "price-high") list = list.slice().sort((a, b) => (b.price || 0) - (a.price || 0));
+    // SORT
+    if (sort === "newest") {
+      list = list.slice().sort((a, b) => (b.id || 0) - (a.id || 0));
+    }
+    if (sort === "price-low") {
+      list = list.slice().sort((a, b) => (a.price || 0) - (b.price || 0));
+    }
+    if (sort === "price-high") {
+      list = list.slice().sort((a, b) => (b.price || 0) - (a.price || 0));
+    }
 
     return list;
-  }, [selectedCategory, selectedMode, query, sort]);
+  }, [selectedCategory, selectedMode, query, sort, categoryMap]);
 
   const clearFilters = () => {
     setSelectedCategory("All");
@@ -98,7 +160,7 @@ export default function Courses() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08 }}
-              className="text-white text-2xl sm:text-3xl md:text-4xl font-extrabold"
+              className="text-white text-2xl sm:text-3xl md:text-4xl font-bold"
             >
               Explore Courses — Learn, Build & Get Hired
             </motion.h1>
@@ -109,7 +171,7 @@ export default function Courses() {
               transition={{ delay: 0.12 }}
               className="text-white/90 mt-2 max-w-2xl"
             >
-              Filter by category and mode. Search to quickly find the perfect course.
+              Filter by track and mode. Search to quickly find your ideal course.
             </motion.p>
           </div>
         </div>
@@ -122,7 +184,8 @@ export default function Courses() {
         transition={{ delay: 0.05 }}
         className="flex flex-col lg:flex-row items-start lg:items-center gap-4 justify-between mb-6"
       >
-        <div className="flex-1 flex items-center gap-3 w-full">
+        {/* Search */}
+        <div className="flex-1 w-full">
           <div className="flex items-center bg-white border rounded-xl shadow-sm px-3 py-2 w-full">
             <svg
               className="w-5 h-5 text-gray-400 mr-3"
@@ -136,7 +199,13 @@ export default function Courses() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-              <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="1.5" />
+              <circle
+                cx="11"
+                cy="11"
+                r="6"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
             </svg>
 
             <input
@@ -161,6 +230,7 @@ export default function Courses() {
           </div>
         </div>
 
+        {/* Sort + actions */}
         <div className="flex items-center gap-3">
           <span className="text-sm hidden sm:inline">
             <strong>{filtered.length}</strong> results
@@ -195,7 +265,7 @@ export default function Courses() {
         </div>
       </motion.div>
 
-      {/* ✅ Mobile Filters Drawer */}
+      {/* Mobile Filters Drawer */}
       <AnimatePresence>
         {mobileFiltersOpen && (
           <motion.div
@@ -205,7 +275,7 @@ export default function Courses() {
             className="md:hidden mb-4"
           >
             <div className="bg-white border rounded-lg p-4 shadow-sm">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex justify-between mb-3">
                 <h4 className="font-medium">Filters</h4>
                 <button
                   onClick={() => setMobileFiltersOpen(false)}
@@ -217,7 +287,7 @@ export default function Courses() {
 
               {/* Category chips */}
               <div className="mb-3">
-                <h5 className="text-xs font-semibold mb-2">Category</h5>
+                <h5 className="text-xs font-semibold mb-2">Track</h5>
                 <div className="flex flex-wrap gap-2">
                   {categories.map((cat) => (
                     <button
@@ -261,13 +331,14 @@ export default function Courses() {
 
       {/* Layout */}
       <div className="grid md:grid-cols-[260px_1fr] gap-8">
-        {/* Sidebar (desktop) */}
+        {/* Sidebar / Desktop */}
         <aside className="hidden md:block">
           <motion.div className="sticky top-24 bg-white border rounded-lg p-5 shadow-sm">
             <h3 className="text-lg font-semibold mb-3">Filters</h3>
 
+            {/* Category */}
             <div className="mb-4">
-              <h4 className="text-sm font-medium mb-2">Category</h4>
+              <h4 className="text-sm font-medium mb-2">Track</h4>
               <div className="flex flex-col gap-2">
                 {categories.map((cat) => (
                   <button
@@ -285,6 +356,7 @@ export default function Courses() {
               </div>
             </div>
 
+            {/* Mode */}
             <div>
               <h4 className="text-sm font-medium mb-2">Mode</h4>
               <div className="flex flex-col gap-2">
@@ -306,12 +378,13 @@ export default function Courses() {
           </motion.div>
         </aside>
 
-        {/* Grid */}
+        {/* Courses Grid */}
         <section>
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-2xl font-bold">All Courses</h2>
             <span className="text-sm text-gray-500">
-              Showing <strong className="text-gray-900">{filtered.length}</strong>{" "}
+              Showing{" "}
+              <strong className="text-gray-900">{filtered.length}</strong>{" "}
               courses
             </span>
           </div>

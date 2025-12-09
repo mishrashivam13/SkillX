@@ -1,143 +1,245 @@
+// src/Components/Footer.jsx
 import { Link } from "react-router-dom";
 import Logo from "../assets/logoksx.png";
 import { Facebook, Instagram, Linkedin, ArrowUp } from "lucide-react";
+import courses from "../Data/coursesData";
+
+// Fast lookup map
+const courseTitleMap = Object.fromEntries(
+  courses.map(c => [c.title.toLowerCase(), c])
+);
+
+const getCourseByTitle = (displayTitle) => {
+  const lower = displayTitle.toLowerCase().trim();
+
+  const aliases = {
+    "ui/ux design": "user experience design",
+    "mobile app development (flutter)": "mobile app development",
+    "generative ai": "generative ai",
+    "business intelligence training": "business intelligence",
+    "ethical hacking pro": "ethical hacking pro",
+    "project management": "project management",
+  };
+
+  const key = aliases[lower] || lower;
+  return courseTitleMap[key] || null;
+};
+
+// Courses lists
+const popularCourses = [
+  "MERN Stack Development",
+  "Python Development",
+  "Data Science",
+  "Cybersecurity",
+  "DevOps",
+  "Mobile App Development (Flutter)",
+  "Cloud Computing",
+  "Digital Marketing",
+];
+
+const otherTopCourses = [
+  "UI/UX Design",
+  "Machine Learning",
+  "Artificial Intelligence",
+  "Generative AI",
+  "Data Analysis",
+  "Blockchain",
+  "Business Intelligence",
+  "Software Development",
+  "Ethical Hacking Pro",
+  "Project Management",
+];
+
+const jaipurCol1 = [
+  "Best MERN Stack Development Training in Jaipur",
+  "Best Python Development Training in Jaipur",
+  "Best Data Science Training Course in Jaipur",
+  "Best Cybersecurity Training Course in Jaipur",
+];
+
+const jaipurCol2 = [
+  "Best DevOps Training Course in Jaipur",
+  "Best Cloud Computing Training in Jaipur",
+  "Best Digital Marketing Training Course in Jaipur",
+  "Best Machine Learning Training Course in Jaipur",
+];
+
+const jaipurCol3 = [
+  "Best Mobile App (Flutter) Training in Jaipur",
+  "Best UI/UX Design Course in Jaipur",
+  "Best Artificial Intelligence Training in Jaipur",
+  "Best Generative AI Training in Jaipur",
+];
+
+const jaipurCol4 = [
+  "Best Data Analysis Training in Jaipur",
+  "Best Blockchain Training in Jaipur",
+  "Best Business Intelligence Training in Jaipur",
+  "Best Software Development Training in Jaipur",
+];
+
+const policies = [
+  { label: "Contact Us", to: "/contact" },
+  { label: "About Us", to: "/about" },
+  { label: "Blogs", to: "/blogs" },
+];
 
 export default function Footer() {
-  const handleScrollTop = () => {
+  const year = new Date().getFullYear();
+
+  const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const links = [
-    { name: "Home", path: "/" },
-    { name: "Courses", path: "/courses" },
-    { name: "About", path: "/about" },
-    { name: "Blogs", path: "/blogs" },
-    { name: "Contact", path: "/contact" },
-  ];
+  const CourseLink = ({ title, children }) => {
+    const course = getCourseByTitle(title);
+    if (!course) return <span className="hover:text-white transition">{children}</span>;
+    return (
+      <Link to={`/course/${course.id}`} className="hover:text-white transition block">
+        {children}
+      </Link>
+    );
+  };
+
+  const JaipurLink = ({ text }) => {
+    const keywordMap = {
+      mern: "MERN Stack Development",
+      python: "Python Development",
+      "data science": "Data Science",
+      cybersecurity: "Cybersecurity",
+      ethical: "Ethical Hacking Pro",
+      devops: "DevOps",
+      cloud: "Cloud Computing",
+      "digital marketing": "Digital Marketing",
+      "machine learning": "Machine Learning",
+      flutter: "Mobile App Development (Flutter)",
+      "ui/ux": "UI/UX Design",
+      "artificial intelligence": "Artificial Intelligence",
+      "generative ai": "Generative AI",
+      "data analysis": "Data Analysis",
+      blockchain: "Blockchain",
+      "business intelligence": "Business Intelligence",
+      "software development": "Software Development",
+    };
+
+    const lower = text.toLowerCase();
+    const matched = Object.keys(keywordMap).find(k => lower.includes(k));
+    const cleanTitle = matched ? keywordMap[matched] : null;
+    const course = cleanTitle ? getCourseByTitle(cleanTitle) : null;
+
+    if (!course) {
+      return <div className="pb-2 border-b border-dotted border-slate-600">{text}</div>;
+    }
+
+    return (
+      <div className="pb-2 border-b border-dotted border-slate-600">
+        <Link to={`/course/${course.id}`} className="hover:text-white transition">
+          {text}
+        </Link>
+      </div>
+    );
+  };
 
   return (
-    <footer className="bg-gray-950 text-gray-300 py-12  border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-5 space-y-10">
+    <footer className="bg-[#242f4d] text-slate-100 pt-12 pb-8 mt-20">
+      <div className="max-w-7xl mx-auto px-5">
 
-        {/* TOP SECTION */}
-        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 items-start">
+        {/* TOP 4 COLUMNS */}
+        <div className="grid gap-10 md:grid-cols-4 mb-12">
 
-          {/* LOGO + ABOUT */}
+          {/* Popular Courses */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <img src={Logo} alt="SkillX Logo" className="w-25 h-14" />
-
-              <div>
-               <p className="text-xs uppercase tracking-[0.2em] text-gray-400">
-  Powered by
-</p>
-
-<h1 className="text-sm md:text-base font-semibold leading-snug text-gray-200 max-w-xs">
-  KotiBox Global <br />
-  Technologies (OPC) Pvt. Limited
-</h1>
-
-             
-              </div>
+            <div className="flex items-center gap-3 mb-5">
+              <img src={Logo} alt="KotiBoxSkillX" className="h-11 w-auto object-contain" />
+              <p className="text-xs uppercase tracking-widest text-slate-400">
+                Our Popular Courses
+              </p>
             </div>
-
-            <p className="text-gray-400 text-sm leading-relaxed max-w-md">
-              Learn job-ready IT skills with expert trainers, real projects, and
-              career-focused programs. Our mission is to upgrade your career.
-            </p>
+            <ul className="space-y-2 text-sm">
+              {popularCourses.map(c => (
+                <li key={c}><CourseLink title={c}>{c}</CourseLink></li>
+              ))}
+            </ul>
           </div>
 
-          {/* QUICK LINKS */}
+          {/* Other Top Courses */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-
+            <h4 className="text-lg font-semibold mb-4 text-white">Other Top Courses</h4>
             <ul className="space-y-2 text-sm">
-              {links.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    className="relative inline-flex items-center gap-1 text-gray-400 hover:text-primary transition group"
-                  >
-                    <span className="h-[2px] w-0 bg-primary rounded-full group-hover:w-4 transition-all" />
-                    <span>{link.name}</span>
+              {otherTopCourses.map(c => (
+                <li key={c}><CourseLink title={c}>{c}</CourseLink></li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Policies */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4 text-white">Policies</h4>
+            <ul className="space-y-2 text-sm">
+              {policies.map(p => (
+                <li key={p.label}>
+                  <Link to={p.to} className="hover:text-white transition">
+                    {p.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* CONTACT + SOCIAL */}
+          {/* Follow Us + Powered By */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li>📍 Jaipur, Rajasthan</li>
-
-              <li>
-                📞{" "}
-                <a
-                  href="tel:+917852017051"
-                  className="hover:text-primary transition"
-                >
-                  +91 78520 17051
-                </a>
-              </li>
-
-              <li>
-                📧{" "}
-                <a
-                  href="mailto:contact@skillx.com"
-                  className="hover:text-primary transition"
-                >
-                  contact@skillx.com
-                </a>
-              </li>
-            </ul>
-
-            {/* SOCIAL ICONS */}
-            <div className="mt-5">
-              <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-3">
-                Follow us
-              </p>
-
-              <div className="flex items-center gap-3">
-                <a
-                  href="#"
-                  className="p-2 rounded-full border border-gray-700 hover:border-primary hover:text-primary transition"
-                >
-                  <Facebook className="w-4 h-4" />
-                </a>
-
-                <a
-                  href="https://www.instagram.com/kotiboxskillx_academy?igsh=MTAxd2ZmZzZnenp3eA=="
-                  className="p-2 rounded-full border border-gray-700 hover:border-primary hover:text-primary transition"
-                >
-                  <Instagram className="w-4 h-4" />
-                </a>
-
-                <a
-                  href="#"
-                  className="p-2 rounded-full border border-gray-700 hover:border-primary hover:text-primary transition"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-              </div>
+            <h4 className="text-lg font-semibold mb-4 text-white">Follow Us!</h4>
+            
+            <div className="flex items-center gap-4 mb-5 text-[#ffcc00]">
+              <a href="#" aria-label="Facebook"><Facebook className="w-6 h-6" /></a>
+              <a 
+                href="https://www.instagram.com/kotiboxskillx_academy" 
+                target="_blank" 
+                rel="noreferrer"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-6 h-6" />
+              </a>
+              <a href="#" aria-label="LinkedIn"><Linkedin className="w-6 h-6" /></a>
             </div>
+
+            <p className="text-sm text-slate-300 leading-relaxed mb-4">
+              Get updates about new batches, workshops and placement results from KotiBoxSkillX Academy, Jaipur.
+            </p>
+
+            <p className="text-xs text-slate-400 font-medium">
+              Powered by <span className="text-white font-bold">KotiBox Global Technology (OPC) Pvt. Ltd.</span> Jaipur
+            </p>
           </div>
 
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-gray-800">
-          <div className="text-xs md:text-sm text-gray-500 text-center md:text-left">
-            © {new Date().getFullYear()}{" "}
-            <span className="font-semibold text-gray-300">SkillX</span> — All
-            Rights Reserved.
-          </div>
+        {/* JAIPUR TRAINING STRIP */}
+        <div className="border-t-2 border-b-2 border-[#ffcc00] py-3 text-center mb-10">
+          <p className="text-white font-bold tracking-widest text-sm md:text-base">
+            TRAINING IN JAIPUR
+          </p>
+        </div>
 
+        {/* JAIPUR COURSES GRID */}
+        <div className="grid gap-8 md:grid-cols-4 text-xs md:text-sm mb-12 text-slate-300">
+          {[jaipurCol1, jaipurCol2, jaipurCol3, jaipurCol4].map((col, idx) => (
+            <div key={idx} className="space-y-3">
+              {col.map(text => (
+                <JaipurLink key={text} text={text} />
+              ))}
+            </div>
+          ))}
+        </div>
+
+        {/* BOTTOM BAR */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-700 text-xs text-slate-400">
+          <p className="text-center md:text-left">
+            Copyright © {year} <span className="font-bold text-white">KotiBox Global Technologies</span>, All Rights Reserved.
+          </p>
           <button
-            onClick={handleScrollTop}
-            className="inline-flex items-center gap-2 text-xs md:text-sm bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-gray-700 hover:border-primary transition"
+            onClick={scrollToTop}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-600 hover:bg-white/10 transition"
           >
             <ArrowUp className="w-4 h-4" />
             Back to top

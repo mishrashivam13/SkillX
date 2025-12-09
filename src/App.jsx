@@ -25,7 +25,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-
+<div className="font-sans">
       <MainLayout>
         <Suspense fallback={<Loader />}>
           <Routes>
@@ -44,6 +44,7 @@ function App() {
           </Routes>
         </Suspense>
       </MainLayout>
+      </div>
           <Chatbot />
     </Router>
   );

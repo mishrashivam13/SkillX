@@ -210,12 +210,12 @@ export default function Navbar() {
 
           {/* Right Side */}
           <div className="flex items-center gap-4">
-            <Link
+            {/* <Link
               to="/login"
               className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 font-medium transition"
             >
               <User size={18} /> Login
-            </Link>
+            </Link> */}
 
             {/* Desktop Enroll */}
             <button

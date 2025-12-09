@@ -15,18 +15,19 @@ export default function PopularCoursesSection({ courses }) {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-extrabold">
-            <span
-              style={{
-                background: `linear-gradient(90deg, ${sxOrange}, #ff9a56)`,
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Most Popular Courses
-            </span>
-          </h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
+  <span
+    style={{
+      background: `linear-gradient(90deg, ${sxOrange}, #ff9a56)`,
+      WebkitBackgroundClip: "text",
+      backgroundClip: "text",
+      color: "transparent",
+    }}
+  >
+    Most Popular Courses
+  </span>
+</h2>
+
           <p className="text-xl text-gray-600 mt-4">
             Updated every month • Built with top companies
           </p>

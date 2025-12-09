@@ -1,8 +1,6 @@
 // src/Pages/Contact.jsx
 import React, { useState, useEffect } from "react";
-
-import HERO_IMAGE from '../assets/ChatGPT Image Nov 25, 2025, 10_54_58 AM.png'
-const LOCAL_OVERLAY = "/mnt/data/A_high-resolution_photograph_showcases_a_modern_of.png";
+import HERO_IMAGE from '../assets/ChatGPT Image Nov 25, 2025, 10_54_58 AM.png';
 import FloatingIcons from "../Components/FloatingIcons";
 
 export default function Contact() {
@@ -18,7 +16,6 @@ export default function Contact() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // small delay so transitions feel natural
     const t = setTimeout(() => setMounted(true), 60);
     return () => clearTimeout(t);
   }, []);
@@ -28,175 +25,162 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Message sent (dummy). Form values:\n" + JSON.stringify(form, null, 2));
+    alert("Message sent! Form values:\n" + JSON.stringify(form, null, 2));
   };
 
-  const mapsQuery = encodeURIComponent("Jaipur, India");
+  const mapsQuery = encodeURIComponent("KotiBoxSkillX Academy Jaipur Rajasthan");
+
+  // Only REAL courses from your coursesData.js – exact titles
+  const realCourses = [
+    "MERN Stack Development",
+    "Python Development",
+    "Data Science",
+    "Cybersecurity",
+    "Ethical Hacking Pro",
+    "DevOps",
+    "Cloud Computing",
+    "Digital Marketing",
+    "Mobile App Development (Flutter)",
+    "UI/UX Design",
+    "Machine Learning",
+    "Artificial Intelligence",
+    "Generative AI",
+    "Data Analysis",
+    "Blockchain",
+    "Business Intelligence",
+    "Software Development",
+    "Project Management",
+    "Game Development",
+    "Robotics and Automation",
+  ];
 
   return (
     <>
       <section className="relative w-full overflow-hidden">
-        {/* Hero background (image with dark overlay) */}
+        {/* Hero background */}
         <div
           className="w-full h-[420px] md:h-[480px] bg-center bg-cover relative"
-          style={{
-            backgroundImage: `url(${HERO_IMAGE})`,
-          }}
+          style={{ backgroundImage: `url(${HERO_IMAGE})` }}
           aria-hidden="true"
         >
-          <div className="absolute inset-0 bg-black/55"></div>
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
-        {/* Centered Card */}
-        <div className="relative -mt-36 md:-mt-44 z-20 flex justify-center">
+        {/* Contact Card */}
+        <div className="relative -mt-36 md:-mt-44 z-20 flex justify-center px-4">
           <div
-            // subtle fade + slide up on mount
-            className={`w-[92%] max-w-[980px] bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl transform transition-all duration-700
-              ${mounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}`}
-            style={{ overflow: "visible" }}
+            className={`w-full max-w-[980px] bg-white/96 backdrop-blur-md rounded-2xl shadow-2xl transition-all duration-800
+              ${mounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
           >
-            {/* Header */}
             <div className="px-6 md:px-10 pt-10 pb-6 text-center">
-              <h2
-                className={`text-3xl md:text-4xl font-bold text-[#1f3e63] transform transition duration-600
-                  ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
-              >
+              <h2 className={`text-3xl md:text-4xl font-bold text-[#1f3e63] transition duration-700 ${mounted ? "opacity-100" : "opacity-0"}`}>
                 Contact Us
               </h2>
-              <p
-                className={`mt-3 text-sm md:text-base text-[#6b8096] max-w-[860px] mx-auto transition-all duration-700
-                  ${mounted ? "opacity-100" : "opacity-0"}`}
-              >
-                For further details, including questions and partnership opportunities,
-                please email to:{" "}
-                <strong className="text-[#0b355f]">info@Kotiboxskillx.com</strong> or
-                use our contact form.
+              <p className={`mt-4 text-sm md:text-base text-[#5a738b] max-w-3xl mx-auto transition-all duration-900 delay-200 ${mounted ? "opacity-100" : "opacity-0"}`}>
+                Have questions about courses, batches, placements or partnerships?  
+                Reach us at <strong className="text-[#0d1b2a]">info@kotiboxskillx.com</strong> or fill the form below.
               </p>
             </div>
 
-            {/* Form */}
-            <form
-              onSubmit={handleSubmit}
-              className={`px-6 md:px-10 pb-10 pt-2 transition-all duration-700 delay-100
-                ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-              aria-label="Contact form"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <label className="flex flex-col text-sm">
-                  <span className="text-xs font-semibold text-[#0b2338]">
-                    Name<span className="text-red-500">*</span>
-                  </span>
+            <form onSubmit={handleSubmit} className="px-6 md:px-10 pb-12 pt-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {/* Name */}
+                <label className="flex flex-col">
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Name <span className="text-red-500">*</span></span>
                   <input
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="Name"
-                    className="mt-2 h-11 px-4 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-shadow duration-200"
+                    placeholder="Your Name"
+                    className="h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                     required
                   />
                 </label>
 
-                <label className="flex flex-col text-sm">
-                  <span className="text-xs font-semibold text-[#0b2338]">
-                    Email<span className="text-red-500">*</span>
-                  </span>
+                {/* Email */}
+                <label className="flex flex-col">
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Email <span className="text-red-500">*</span></span>
                   <input
                     name="email"
                     type="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="Email Address"
-                    className="mt-2 h-11 px-4 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-shadow duration-200"
+                    placeholder="you@example.com"
+                    className="h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                     required
                   />
                 </label>
 
-                <label className="flex flex-col text-sm">
-                  <span className="text-xs font-semibold text-[#0b2338]">
-                    Phone<span className="text-red-500">*</span>
-                  </span>
+                {/* Phone */}
+                <label className="flex flex-col">
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Phone <span className="text-red-500">*</span></span>
                   <input
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    placeholder="Phone Number"
-                    className="mt-2 h-11 px-4 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-shadow duration-200"
+                    name="phone" value={form.phone} onChange={handleChange}
+                    placeholder="+91 98765 43210"
+                    className="h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                   />
                 </label>
 
-                <label className="flex flex-col text-sm">
-                  <span className="text-xs font-semibold text-[#0b2338]">
-                    Center<span className="text-red-500">*</span>
-                  </span>
+               
+
+                {/* Center */}
+                <label className="flex flex-col">
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Center <span className="text-red-500">*</span></span>
                   <select
                     name="center"
                     value={form.center}
                     onChange={handleChange}
-                    className="mt-2 h-11 px-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200 bg-white transition-shadow duration-200"
+                    className="h-12 px-4 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    required
                   >
                     <option value="">Select Branch</option>
-                    <option>Jaipur</option>
+                    <option value="jaipur">Jaipur</option>
                   </select>
                 </label>
 
-                <label className="flex flex-col text-sm md:col-span-1">
-                  <span className="text-xs font-semibold text-[#0b2338]">
-                    Course<span className="text-red-500">*</span>
-                  </span>
+                {/* Course - ONLY REAL COURSES */}
+                <label className="flex flex-col md:col-span-2">
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Interested Course <span className="text-red-500">*</span></span>
                   <select
                     name="course"
                     value={form.course}
                     onChange={handleChange}
-                    className="mt-2 h-11 px-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200 bg-white transition-shadow duration-200"
+                    className="h-12 px-4 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    required
                   >
-                    <option value="">Select a Course</option>
-                    <option>MERN Stack + AI</option>
-                    <option>Java Full Stack + AI</option>
-                    <option>DOt Net +AI</option>
-                    <option>Data Science</option>
-                    <option>Android/IOS</option>
-                    <option>Cloud Computing</option>
-                    <option>Cyber Security + AI</option>
-                    <option>Python Programming</option>
-                    <option>Business Analytics</option>
-                    <option>AWS</option>
-                    <option>DevOps</option>
-                    <option>UI/UX</option>
-                    <option>Java Programming</option>
-                    <option>Data Analytics</option>
-                    <option>Machine Learning</option>
-                    <option>Digital Marketing + AI</option>
+                    <option value="">Choose a Course</option>
+                    {realCourses.map((course) => (
+                      <option key={course} value={course}>
+                        {course}
+                      </option>
+                    ))}
                   </select>
                 </label>
-
-                {/* Empty placeholder on larger screens to keep grid aligned */}
-                <div className="hidden md:block" />
               </div>
 
               {/* Message */}
               <div className="mt-6">
-                <label className="flex flex-col text-sm">
-                  <span className="text-xs font-semibold text-[#0b2338]">
-                    How can we help you?<span className="text-red-500">*</span>
+                <label className="flex flex-col">
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">
+                    Message <span className="text-red-500">*</span>
                   </span>
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Message..."
+                    placeholder="How can we help you today?"
                     rows={6}
-                    className="mt-2 w-full px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200 transition-shadow duration-200"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                    required
                   />
                 </label>
               </div>
 
-              {/* Submit button */}
-              <div className="mt-8 flex justify-center">
+              {/* Submit */}
+              <div className="mt-8 text-center">
                 <button
                   type="submit"
-                  className="w-full md:w-3/4 lg:w-2/3 py-4 rounded-lg text-white font-semibold
-                    bg-gradient-to-r from-[#2b2f5f] to-[#1f2546]
-                    hover:from-[#1d234f] hover:to-[#3d2b66] transition-transform duration-200 shadow-md transform hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full md:w-auto px-12 py-4 bg-gradient-to-r from-[#1e3a8a] to-[#1e40af] hover:from-[#1e40af] hover:to-[#3b82f6] text-white font-bold text-lg rounded-xl shadow-lg transform hover:scale-105 active:scale-95 transition duration-300"
                 >
                   SEND MESSAGE
                 </button>
@@ -205,37 +189,22 @@ export default function Contact() {
           </div>
         </div>
 
-
-
-        {/* ---------- GOOGLE MAP (bottom) ---------- */}
-        <div className="mt-12">
-          {/* Container to position map and overlay image */}
-          <div className="w-full flex justify-center">
-            <div
-              className={`w-full max-w-[1200px] h-[420px] md:h-[480px] relative rounded-t-none overflow-hidden transition-all duration-700
-                ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-            >
-              {/* responsive iframe embed */}
+        {/* Google Map */}
+        <div className="mt-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className={`rounded-2xl overflow-hidden shadow-2xl transition-all duration-1000 ${mounted ? "opacity-100" : "opacity-0"}`}>
               <iframe
-                title="KotiboxSkillX location"
-                src={`https://maps.google.com/maps?q=${mapsQuery}&z=15&output=embed`}
-                className="w-full h-full border-0"
+                title="KotiBoxSkillX Academy Location"
+                src={`https://maps.google.com/maps?q=${mapsQuery}&z=16&output=embed`}
+                className="w-full h-96 md:h-[500px] border-0"
                 allowFullScreen
                 loading="lazy"
               ></iframe>
-
-              {/* small overlay image at bottom-right of the map using your uploaded local file */}
-              <img
-                src={LOCAL_OVERLAY}
-                alt="overlay"
-                className={`absolute right-4 bottom-4 w-20 h-20 md:w-28 md:h-28 rounded-full ring-4 ring-cyan-200 object-cover shadow-lg transition-transform duration-800
-                  ${mounted ? "opacity-100 scale-100" : "opacity-0 scale-90"}`}
-                style={{ transitionDelay: mounted ? "350ms" : "0ms" }}
-              />
             </div>
           </div>
         </div>
       </section>
+
       <FloatingIcons />
     </>
   );
