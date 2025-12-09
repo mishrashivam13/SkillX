@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Rocket, Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 import Image from "../../assets/SkillX.png";
 
 /* Brand colors */
@@ -11,20 +12,21 @@ const sxOrange = "#F28C3A";
 /* Data */
 const heroSlides = [
   {
-    title: "100% Job Guarantee",
-    subtitle: "Live Projects • Mentorship • Placement Support",
+    title: "100% Placement Assistance",
+    subtitle: "Live projects • Mentorship • Interview preparation & career guidance.",
   },
   {
-    title: "Become a Full Stack Developer",
-    highlight: "in Just 6 Months",
-    subtitle: "Frontend + Backend + Cloud + Real Projects",
+    title: "Hands-On IT Training",
+    highlight: "with Live Projects",
+    subtitle: "Work on real-world tasks guided by experienced mentors.",
   },
   {
-    title: "5000+ Students Placed",
-    highlight: "₹12LPA Average Package",
-    subtitle: "Join India's fastest growing IT institute",
+    title: "Launch Your IT Career",
+    highlight: "From Beginner to Professional",
+    subtitle: "Structured curriculum, hands-on practice, and supportive mentors.",
   },
 ];
+
 
 export default function HeroSection({ onOpenAdmission }) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -49,7 +51,7 @@ export default function HeroSection({ onOpenAdmission }) {
         />
 
         {/* Floating Orbs – disabled on mobile for performance */}
-        <div className="fixed inset-0 -z-20 pointer-events-none opacity-30 hidden md:block">
+        <div className="fixed inset-0 -z-20 pointer-events-none opacity-30 hidden lg:block">
           <motion.div
             animate={{ x: [-120, 180, -120], y: [-100, 140, -100] }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
@@ -96,7 +98,7 @@ export default function HeroSection({ onOpenAdmission }) {
                     style={{ color: sxOrange }}
                   />
                   <span className="text-xs sm:text-sm font-semibold tracking-wide">
-                    100% PLACEMENT GUARANTEE
+                    Job-Focused IT Training • KotiBoxSkillX Academy
                   </span>
                 </motion.div>
 
@@ -138,6 +140,11 @@ export default function HeroSection({ onOpenAdmission }) {
                   {activeSlide.subtitle}
                 </p>
 
+                {/* Social proof line */}
+                <p className="mt-3 text-xs sm:text-sm text-gray-300">
+                  Live + Recorded classes • Real projects • Interview preparation & doubt support
+                </p>
+
                 {/* CTA */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -145,6 +152,7 @@ export default function HeroSection({ onOpenAdmission }) {
                   transition={{ delay: 0.6 }}
                   className="mt-7 sm:mt-9 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
                 >
+                  {/* Primary CTA */}
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
@@ -165,11 +173,23 @@ export default function HeroSection({ onOpenAdmission }) {
                       transition={{ duration: 0.6 }}
                     />
                   </motion.button>
+
+                  {/* Secondary CTA */}
+                  <Link
+                    to="/courses"
+                    className="px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border border-white/40 text-sm sm:text-base text-white/90 hover:bg-white/10 transition"
+                  >
+                    View Courses
+                  </Link>
                 </motion.div>
               </motion.div>
             </AnimatePresence>
 
-         
+            {/* Scroll hint (desktop only) */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-1 text-xs text-gray-300">
+              <span>Scroll to explore</span>
+              <div className="w-[1px] h-6 bg-gray-400 animate-pulse" />
+            </div>
           </div>
         </section>
       </div>

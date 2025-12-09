@@ -50,7 +50,7 @@ export default function Home() {
         <TestimonialsSection />
         <ContactCallSection />
         <WhyChooseKotiBox />
-        <FloatingIcons />
+        {/* <FloatingIcons /> */}
       </div>
 
       {/* Admission Modal */}

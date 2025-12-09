@@ -663,35 +663,7 @@ You can aim for:
     averageSalary: "₹4 – 11 LPA",
   },
 
-  {
-    id: 22,
-    title: "Automation testing",
-    desc: "Manual testing + Selenium automation basics",
-    image: Image21,
-    category: "Automation testing",
-    level: "Beginner",
-    mode: "Offline",
-    duration: "3–4 Months",
-    shortDescription:
-      "Start with manual testing and move into basic Selenium automation.",
-    details: `
-You’ll write test cases, report bugs and automate smoke tests using Selenium.
-    `,
-    keyTopics: [
-      "SDLC & STLC",
-      "Test cases & bug reporting",
-      "Functional & regression testing",
-      "Intro to Selenium WebDriver",
-      "Basic API testing concepts",
-    ],
-    futureScope: `
-Roles:
-• QA Engineer
-• Test Engineer
-• Automation Tester (with more depth)
-    `,
-    averageSalary: "₹3 – 9 LPA",
-  },
+  
 
   
 ];

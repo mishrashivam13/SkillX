@@ -37,9 +37,7 @@ export default function Footer() {
   Technologies (OPC) Pvt. Limited
 </h1>
 
-                <h1 className="text-2xl font-extrabold tracking-wide">
-                  <span className="text-primary">Skill</span>X
-                </h1>
+             
               </div>
             </div>
 

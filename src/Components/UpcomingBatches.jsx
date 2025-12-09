@@ -150,7 +150,7 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
                       className="w-full mt-5 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg"
                     >
                       <Phone className="w-5 h-5" />
-                      Call Now to Enroll
+                      Call Now To Enroll
                     </a>
                   </div>
                 </div>
