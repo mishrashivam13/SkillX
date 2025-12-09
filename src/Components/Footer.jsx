@@ -141,7 +141,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#242f4d] text-slate-100 pt-12 pb-8 mt-20">
+    <footer className="bg-[#242f4d] text-slate-100 pt-12 pb-8 ">
       <div className="max-w-7xl mx-auto px-5">
 
         {/* TOP 4 COLUMNS */}
