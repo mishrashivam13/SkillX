@@ -61,13 +61,13 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
 
-  const duplicatedBatches = [...batches, ...batches]; // For seamless loop
+  const duplicatedBatches = [...batches, ...batches];
 
   const checkScroll = () => {
     if (!carouselRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
     setCanScrollPrev(scrollLeft > 0);
-    setCanScrollNext(scrollLeft + clientWidth < scrollWidth - 50); // tolerance
+    setCanScrollNext(scrollLeft + clientWidth < scrollWidth - 50);
   };
 
   useEffect(() => {
@@ -101,9 +101,8 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900">
-  Upcoming Batches
-</h2>
-
+            Upcoming Batches
+          </h2>
           <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
             Secure your seat in the next cohort. Limited seats available!
           </p>
@@ -112,14 +111,12 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
 
         {/* Carousel Container */}
         <div className="relative">
-          {/* Navigation Buttons - Desktop */}
+          {/* Navigation Buttons */}
           <button
             onClick={scrollPrev}
             disabled={!canScrollPrev}
             className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg rounded-full p-3 transition-all hover:scale-110 hover:shadow-xl hidden md:flex items-center justify-center ${
-              !canScrollPrev
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:bg-white"
+              !canScrollPrev ? "opacity-50 cursor-not-allowed" : "hover:bg-white"
             }`}
             aria-label="Previous batch"
           >
@@ -130,9 +127,7 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
             onClick={scrollNext}
             disabled={!canScrollNext}
             className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-lg rounded-full p-3 transition-all hover:scale-110 hover:shadow-xl hidden md:flex items-center justify-center ${
-              !canScrollNext
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:bg-white"
+              !canScrollNext ? "opacity-50 cursor-not-allowed" : "hover:bg-white"
             }`}
             aria-label="Next batch"
           >
@@ -156,13 +151,14 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
                 viewport={{ once: true }}
               >
                 <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-100 transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2">
-                  {/* Image */}
-                  <div className="h-48 bg-gradient-to-br from-blue-50 to-indigo-100 p-8 flex items-center justify-center">
+                  
+                  {/* IMAGE CONTAINER - FIXED SCROLL ISSUE */}
+                  <div className="h-48 bg-gradient-to-br from-blue-50 to-indigo-100 p-8 flex items-center justify-center pointer-events-none">
                     <div className="w-32 h-32 rounded-full overflow-hidden shadow-xl ring-8 ring-white/50">
                       <img
                         src={batch.image}
                         alt={batch.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover pointer-events-none"
                         loading="lazy"
                       />
                     </div>
@@ -206,7 +202,7 @@ export default function UpcomingBatches({ batches = BASE_BATCHES }) {
           ← Swipe to see more →
         </p>
 
-        {/* Desktop Dots Indicator (Optional Enhancement) */}
+        {/* Desktop Dots */}
         <div className="flex justify-center gap-2 mt-8">
           {batches.map((_, i) => (
             <div

@@ -6,7 +6,7 @@ import TestimonialsSection from "../TestimonialsSection";
 
 export default function MissionSection() {
   return (
-    <section className="py-5 bg-white">
+    <section className=" bg-white">
       <div className="max-w-7xl mx-auto px-5">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -48,7 +48,9 @@ export default function MissionSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <TestimonialsSection />
+          <div className="mt-10">
+            <TestimonialsSection  />
+            </div>
           </motion.div>
         </div>
       </div>

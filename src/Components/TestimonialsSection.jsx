@@ -83,6 +83,7 @@ const TestimonialsSection = () => {
     const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
     if (scrollLeft + clientWidth >= scrollWidth - cardWidth) {
       setTimeout(() => {
+        if (!sliderRef.current) return;
         sliderRef.current.scrollTo({ left: 0, behavior: "smooth" });
       }, 400);
     }
@@ -135,14 +136,45 @@ const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Slider */}
-        <div ref={sliderRef} className="flex gap-6 overflow-x-hidden pb-3">
+        {/* Slider – SCROLLABLE */}
+        <div
+          ref={sliderRef}
+          className="
+            flex gap-6 
+            overflow-x-auto 
+            scroll-smooth 
+            pb-3 
+            -mx-4 px-4
+          "
+          style={{
+            scrollbarWidth: "none",      // Firefox
+            msOverflowStyle: "none",     // IE/Edge
+          }}
+          onMouseEnter={() => {
+            if (intervalRef.current) clearInterval(intervalRef.current);
+          }}
+          onMouseLeave={() => {
+            intervalRef.current = setInterval(
+              () => scrollByCards("next"),
+              AUTO_SLIDE_DELAY
+            );
+          }}
+        >
+          {/* Hide scrollbar (WebKit) */}
+          <style>
+            {`
+              .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+              }
+            `}
+          </style>
+
           {testimonials.map((t, idx) => (
             <div
               key={idx}
-              className="testimonial-card min-w-[320px] md:min-w-[360px] 
+              className="testimonial-card min-w-[280px] sm:min-w-[320px] md:min-w-[360px] 
                          bg-gradient-to-b from-[#cfe7ff] to-[#e4f1ff]
-                         rounded-3xl shadow-md px-8 py-8
+                         rounded-3xl shadow-md px-6 sm:px-8 py-6 sm:py-8
                          flex flex-col justify-between"
             >
               {/* Top */}
@@ -150,7 +182,7 @@ const TestimonialsSection = () => {
                 <span className="text-5xl text-orange-300 leading-none">
                   &ldquo;
                 </span>
-                <div className="w-20 h-20 rounded-full border-[4px] border-orange-500 overflow-hidden flex-shrink-0">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-[4px] border-orange-500 overflow-hidden flex-shrink-0">
                   <img
                     src={t.image}
                     alt={t.name}
@@ -161,22 +193,29 @@ const TestimonialsSection = () => {
 
               {/* Name + Role */}
               <div className="mb-3">
-                <h3 className="text-xl font-semibold text-[#004a8f]">
+                <h3 className="text-lg sm:text-xl font-semibold text-[#004a8f]">
                   {t.name}
                 </h3>
-                <p className="text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-600">
                   {t.role} • KotiBoxSkillX Alumni
                 </p>
-                <div className="mt-1 text-green-500 text-lg">★★★★★</div>
+                <div className="mt-1 text-green-500 text-base sm:text-lg">
+                  ★★★★★
+                </div>
               </div>
 
               {/* Text */}
-              <p className="text-[15px] leading-relaxed text-slate-800">
+              <p className="text-[13px] sm:text-[15px] leading-relaxed text-slate-800">
                 {t.text}
               </p>
             </div>
           ))}
         </div>
+
+        {/* Mobile hint */}
+        <p className="mt-4 text-xs text-center text-slate-400 sm:hidden">
+          Swipe left/right to see more students →
+        </p>
       </div>
     </section>
   );
