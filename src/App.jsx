@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
 import ScrollToTop from "./Components/ScrollToTop";
 import Loader from "./Components/Loader";
+import Chatbot from "./Components/Chatbot";
+
 
 // Lazy-loaded pages
 const Home = lazy(() => import("./Pages/Home"));
@@ -17,6 +19,7 @@ const AdmissionForm = lazy(() => import("./Pages/AdmissionForm"));
 const Login = lazy(() => import("./Pages/Login"));
 const Register = lazy(() => import("./Pages/Register"));
 const BlogDetails = lazy(() => import("./Pages/BlogDetails"));
+
 
 function App() {
   return (
@@ -41,6 +44,7 @@ function App() {
           </Routes>
         </Suspense>
       </MainLayout>
+          <Chatbot />
     </Router>
   );
 }
