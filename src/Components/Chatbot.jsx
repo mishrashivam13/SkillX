@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { X, Send, Info } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BotAvatar from "../assets/chatbot/cute-bot-say-users-hello-chatbot-greets-online-consultation/195.png";
+import AdmissionModal from "../Components/AdmissionModal";
 
 export default function Chatbot() {
   const navigate = useNavigate();
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);          // Chatbot window
+  const [showAdmission, setShowAdmission] = useState(false); // Admission modal
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -14,6 +16,13 @@ export default function Chatbot() {
       text: "Hi! 👋 Welcome to KotiBoxSkillX. Choose an option below or type your question.",
     },
   ]);
+
+  // Auto-scroll target
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const quickQuestions = [
     { label: "Available Courses", value: "Tell me about your courses" },
@@ -28,8 +37,8 @@ export default function Chatbot() {
     if (!text) return;
 
     const userMessage = { from: "user", text };
-
     let reply = "Thanks! Our team will connect with you soon. 😊";
+
     const lower = text.toLowerCase();
 
     if (lower.includes("course"))
@@ -46,14 +55,21 @@ export default function Chatbot() {
 
     if (lower.includes("contact"))
       reply =
-        "You can call us, visit the Contact page, or fill the admission form for a callback.";
+        "You can call or WhatsApp us at +91-7852017051, visit the Contact page, or fill the admission form for a callback";
 
-    if (lower.includes("admission") || lower.includes("enroll"))
-      reply =
-        "You can apply online using our Admission Form. Our team will guide you with the next steps.";
+    if (lower.includes("admission") || lower.includes("enroll")) {
+      reply = "Opening the Admission Form for you now. Please fill in the details.";
+    }
 
     setMessages((prev) => [...prev, userMessage, { from: "bot", text: reply }]);
     setInput("");
+
+    // Open modal when user asks for admission
+    if (lower.includes("admission") || lower.includes("enroll")) {
+      setShowAdmission(true);
+      // optionally close chat if you want:
+      // setOpen(false);
+    }
   };
 
   const handleQuickClick = (value) => {
@@ -63,11 +79,22 @@ export default function Chatbot() {
   const handleDetailsClick = (type) => {
     if (type === "courses") navigate("/courses");
     if (type === "contact") navigate("/contact");
-    if (type === "admission") navigate("/admission");
+
+    if (type === "admission") {
+      setShowAdmission(true);
+      // optionally close chat
+      // setOpen(false);
+    }
   };
 
   return (
     <>
+      {/* 🔹 ADMISSION MODAL – always mounted, visibility controlled by props */}
+      <AdmissionModal
+        isOpen={showAdmission}
+        onClose={() => setShowAdmission(false)}
+      />
+
       {/* CHAT WINDOW */}
       {open && (
         <div className="fixed bottom-20 right-6 w-[320px] max-w-[90vw] h-[460px] bg-white shadow-2xl rounded-xl flex flex-col z-50">
@@ -100,6 +127,9 @@ export default function Chatbot() {
                 {msg.text}
               </div>
             ))}
+
+            {/* Auto-scroll anchor */}
+            <div ref={bottomRef} />
           </div>
 
           {/* Quick options */}
@@ -166,12 +196,11 @@ export default function Chatbot() {
         onClick={() => setOpen(!open)}
         className="fixed bottom-6 right-6 bg-orange-500 hover:bg-orange-600 text-white w-20 h-20 rounded-full shadow-xl flex items-center justify-center z-40"
       >
-       <img
-  src={BotAvatar}
-  alt="Chatbot Avatar"
-  className="w-20 h-20 rounded-full object-cover"
-/>
-
+        <img
+          src={BotAvatar}
+          alt="Chatbot Avatar"
+          className="w-20 h-20 rounded-full object-cover"
+        />
       </button>
     </>
   );

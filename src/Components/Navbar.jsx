@@ -222,7 +222,7 @@ export default function Navbar() {
               onClick={openModal}
               className="hidden md:block px-8 py-3.5 rounded-full font-bold text-lg shadow-2xl hover:scale-105 transition-all duration-300 text-white"
               style={{
-                background: `linear-gradient(90deg, ${sxOrange}, #ff9a56)`,
+                background: " #ff6900",
               }}
             >
               Enroll Now
