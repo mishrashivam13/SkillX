@@ -134,7 +134,7 @@ export default function Navbar() {
                               Popular Courses 2025
                             </h3>
                             <p className="text-sm text-slate-600 mt-1">
-                              100% Placement Guarantee
+                              100% Placement Assistance
                             </p>
                           </div>
 
