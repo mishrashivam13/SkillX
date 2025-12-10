@@ -1,6 +1,6 @@
 // src/Pages/Contact.jsx
 import React, { useState, useEffect } from "react";
-import HERO_IMAGE from '../assets/ChatGPT Image Nov 25, 2025, 10_54_58 AM.png';
+import HERO_IMAGE from "../assets/ChatGPT Image Nov 25, 2025, 10_54_58 AM.png";
 import FloatingIcons from "../Components/FloatingIcons";
 
 export default function Contact() {
@@ -28,7 +28,8 @@ export default function Contact() {
     alert("Message sent! Form values:\n" + JSON.stringify(form, null, 2));
   };
 
-  const mapsQuery = encodeURIComponent("KotiBoxSkillX Academy Jaipur Rajasthan");
+  // ✅ Exact coordinates for Kotibox Global Technologies
+  const mapsQuery = "26.8408109,75.7618457";
 
   // Only REAL courses from your coursesData.js – exact titles
   const realCourses = [
@@ -69,16 +70,26 @@ export default function Contact() {
         {/* Contact Card */}
         <div className="relative -mt-36 md:-mt-44 z-20 flex justify-center px-4">
           <div
-            className={`w-full max-w-[980px] bg-white/96 backdrop-blur-md rounded-2xl shadow-2xl transition-all duration-800
-              ${mounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"}`}
+            className={`w-full max-w-[980px] bg-white/96 backdrop-blur-md rounded-2xl shadow-2xl transition-all duration-800 ${
+              mounted ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
+            }`}
           >
             <div className="px-6 md:px-10 pt-10 pb-6 text-center">
-              <h2 className={`text-3xl md:text-4xl font-bold text-[#1f3e63] transition duration-700 ${mounted ? "opacity-100" : "opacity-0"}`}>
+              <h2
+                className={`text-3xl md:text-4xl font-bold text-[#1f3e63] transition duration-700 ${
+                  mounted ? "opacity-100" : "opacity-0"
+                }`}
+              >
                 Contact Us
               </h2>
-              <p className={`mt-4 text-sm md:text-base text-[#5a738b] max-w-3xl mx-auto transition-all duration-900 delay-200 ${mounted ? "opacity-100" : "opacity-0"}`}>
-                Have questions about courses, batches, placements or partnerships?  
-                Reach us at <strong className="text-[#0d1b2a]">info@kotiboxskillx.com</strong> or fill the form below.
+              <p
+                className={`mt-4 text-sm md:text-base text-[#5a738b] max-w-3xl mx-auto transition-all duration-900 delay-200 ${
+                  mounted ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                Have questions about courses, batches, placements or partnerships? Reach us at{" "}
+                <strong className="text-[#0d1b2a]">info@kotiboxskillx.com</strong> or fill the
+                form below.
               </p>
             </div>
 
@@ -86,7 +97,9 @@ export default function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Name */}
                 <label className="flex flex-col">
-                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Name <span className="text-red-500">*</span></span>
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">
+                    Name <span className="text-red-500">*</span>
+                  </span>
                   <input
                     name="name"
                     value={form.name}
@@ -99,7 +112,9 @@ export default function Contact() {
 
                 {/* Email */}
                 <label className="flex flex-col">
-                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Email <span className="text-red-500">*</span></span>
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">
+                    Email <span className="text-red-500">*</span>
+                  </span>
                   <input
                     name="email"
                     type="email"
@@ -113,19 +128,23 @@ export default function Contact() {
 
                 {/* Phone */}
                 <label className="flex flex-col">
-                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Phone <span className="text-red-500">*</span></span>
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">
+                    Phone <span className="text-red-500">*</span>
+                  </span>
                   <input
-                    name="phone" value={form.phone} onChange={handleChange}
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
                     placeholder="+91 98765 43210"
                     className="h-12 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                   />
                 </label>
 
-               
-
                 {/* Center */}
                 <label className="flex flex-col">
-                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Center <span className="text-red-500">*</span></span>
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">
+                    Center <span className="text-red-500">*</span>
+                  </span>
                   <select
                     name="center"
                     value={form.center}
@@ -140,7 +159,9 @@ export default function Contact() {
 
                 {/* Course - ONLY REAL COURSES */}
                 <label className="flex flex-col md:col-span-2">
-                  <span className="text-xs font-semibold text-[#0b2338] mb-1">Interested Course <span className="text-red-500">*</span></span>
+                  <span className="text-xs font-semibold text-[#0b2338] mb-1">
+                    Interested Course <span className="text-red-500">*</span>
+                  </span>
                   <select
                     name="course"
                     value={form.course}
@@ -192,7 +213,11 @@ export default function Contact() {
         {/* Google Map */}
         <div className="mt-16 px-4">
           <div className="max-w-6xl mx-auto">
-            <div className={`rounded-2xl overflow-hidden shadow-2xl transition-all duration-1000 ${mounted ? "opacity-100" : "opacity-0"}`}>
+            <div
+              className={`rounded-2xl overflow-hidden shadow-2xl transition-all duration-1000 ${
+                mounted ? "opacity-100" : "opacity-0"
+              }`}
+            >
               <iframe
                 title="KotiBoxSkillX Academy Location"
                 src={`https://maps.google.com/maps?q=${mapsQuery}&z=16&output=embed`}
@@ -200,6 +225,18 @@ export default function Contact() {
                 allowFullScreen
                 loading="lazy"
               ></iframe>
+            </div>
+
+            {/* Open in Google Maps button */}
+            <div className="mt-4 text-center">
+              <a
+                href="https://www.google.com/maps/place/Kotibox+Global+Technologies/@26.8408109,75.7618457,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 rounded-lg bg-blue-600 text-white text-sm md:text-base font-semibold shadow hover:bg-blue-700 transition"
+              >
+                📍 Open in Google Maps
+              </a>
             </div>
           </div>
         </div>
