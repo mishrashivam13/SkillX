@@ -1,12 +1,14 @@
 import "./App.css";
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// ❌ BrowserRouter as Router
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// ✅ Use HashRouter instead
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./Layouts/MainLayout";
 import ScrollToTop from "./Components/ScrollToTop";
 import Loader from "./Components/Loader";
 import Chatbot from "./Components/Chatbot";
-
 
 // Lazy-loaded pages
 const Home = lazy(() => import("./Pages/Home"));
@@ -20,32 +22,31 @@ const Login = lazy(() => import("./Pages/Login"));
 const Register = lazy(() => import("./Pages/Register"));
 const BlogDetails = lazy(() => import("./Pages/BlogDetails"));
 
-
 function App() {
   return (
     <Router>
       <ScrollToTop />
-<div className="font-sans">
-      <MainLayout>
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/about" element={<About />} />
+      <div className="font-sans">
+        <MainLayout>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/about" element={<About />} />
 
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/blogs/:slug" element={<BlogDetails />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/blogs/:slug" element={<BlogDetails />} />
 
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/course/:id" element={<SingleCourse />} />
-            <Route path="/admission" element={<AdmissionForm />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
-        </Suspense>
-      </MainLayout>
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/course/:id" element={<SingleCourse />} />
+              <Route path="/admission" element={<AdmissionForm />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+          </Suspense>
+        </MainLayout>
       </div>
-          <Chatbot />
+      <Chatbot />
     </Router>
   );
 }
