@@ -1,8 +1,5 @@
 import "./App.css";
 import React, { lazy, Suspense } from "react";
-// ❌ BrowserRouter as Router
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// ✅ Use HashRouter instead
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./Layouts/MainLayout";
